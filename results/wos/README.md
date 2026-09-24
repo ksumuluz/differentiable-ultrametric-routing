@@ -9,3 +9,5 @@ Core files:
 - `results_aggregate.csv`, `corruption_results.csv`, `pairwise_comparisons.json` — deterministic summaries.
 - `map_finite_bias_per_seed.csv`, `map_finite_bias_aggregate.csv`, `map_finite_bias_comparisons.json` — hard MAP, matched MAP finite-bias, and posterior finite-bias comparison.
 - `per_document_key_methods.csv.gz`, `document_bootstrap.csv/.json`, `per_document_differences.csv.gz` — document-level evidence and 20,000-resample bootstrap outputs.
+
+The bootstrap can be recomputed with `experiments/wos/recompute_document_bootstrap.py`.

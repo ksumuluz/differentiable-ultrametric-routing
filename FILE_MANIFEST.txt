@@ -41,7 +41,6 @@ results/theory/independent_verification_grid.csv
 results/theory/independent_verification_summary.json
 results/theory/reported_theorem_verification.json
 results/wos/README.md
-results/wos/bootstrap_reproduction.csv
 results/wos/corruption_results.csv
 results/wos/dataset_audit.json
 results/wos/document_bootstrap.csv

@@ -2,8 +2,8 @@
 
 | Manuscript component | Repository evidence | Status |
 |---|---|---|
-| Main manuscript | `paper/main_manuscript.pdf` + `paper/main_manuscript.tex` | Authoritative PDF + editable synchronized source |
-| Supplement | `paper/supplementary_material.pdf` + `paper/supplementary_material.tex` | Authoritative PDF + editable synchronized source |
+| Main manuscript | `paper/main_manuscript.pdf` + `paper/main_manuscript.tex` | Current submission PDF + editable synchronized source |
+| Supplement | `paper/supplementary_material.pdf` + `paper/supplementary_material.tex` | Current submission PDF + editable synchronized source |
 | Bibliography | `paper/references.bib` | Present |
 | Figure source PDFs | `paper/figures/` | Seven files present |
 | Controlled exact-provenance results | `results/controlled/exact_provenance_results.json` | Final machine-readable results present |

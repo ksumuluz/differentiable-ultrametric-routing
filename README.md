@@ -2,9 +2,13 @@
 
 This repository accompanies **“Differentiable Ultrametric Routing for Hierarchical Evidence under Uncertain Provenance.”** The layout follows the scientific structure of the manuscript rather than internal development stages.
 
+Public repository: https://github.com/ksumuluz/differentiable-ultrametric-routing
+
+Repository snapshot synchronized with the submission manuscripts on **24 September 2026**.
+
 ## Repository map
 
-- `paper/` — authoritative manuscript PDFs, synchronized editable LaTeX sources for the main manuscript and supplement, bibliography, figure PDFs, and searchable text exports.
+- `paper/` — current submission manuscript PDFs, synchronized editable LaTeX sources for the main manuscript and supplement, bibliography, figure PDFs, and searchable text exports.
 - `experiments/controlled/` — regeneration utility for the controlled-experiment tables and figures from the committed machine-readable results.
 - `experiments/wos/` — WOS-46985 external experiment, matched finite-bias ablation, and bootstrap recomputation.
 - `theory/` — executable depth-sensitivity theorem verification.
@@ -46,8 +50,8 @@ python experiments/wos/run_experiment.py \
 
 ## Provenance notes
 
-The final controlled machine-readable results are preserved directly. The exact orchestration code that produced those JSON files is not included; the reviewer-facing package provides the results and a separate table/figure regeneration utility.
+The final controlled machine-readable results are preserved directly. The exact orchestration code that produced those JSON files is not included; the repository provides the results and a separate table/figure regeneration utility.
 
-`paper/main_manuscript.tex` and `paper/supplementary_material.tex` are synchronized editable submission sources for the authoritative 23-page main manuscript and 5-page supplement.
+`paper/main_manuscript.tex` and `paper/supplementary_material.tex` are synchronized editable submission sources for the current 23-page main manuscript and 5-page supplement.
 
 See `REPRODUCIBILITY_COVERAGE.md`, `VALIDATION.md`, and `KNOWN_LIMITATIONS.md` for exact coverage.

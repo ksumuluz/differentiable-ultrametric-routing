@@ -1,6 +1,6 @@
 item,submission_pdf_reported,repository_value,status,evidence,notes
-Main manuscript PDF,23 pages; SHA-256 adcdbcb89930c85fcb2a09b1cf71d88f896247964f143409e8aaf26fe5b43db2,23 pages; SHA-256 adcdbcb89930c85fcb2a09b1cf71d88f896247964f143409e8aaf26fe5b43db2,PASS,paper/main_manuscript.pdf,
-Supplement PDF,5 pages; SHA-256 f40513fcfe2d13cfa5b245208d9089d3a942c21b0e579b1ee4f4573467db6748,5 pages; SHA-256 f40513fcfe2d13cfa5b245208d9089d3a942c21b0e579b1ee4f4573467db6748,PASS,paper/supplementary_material.pdf,
+Main manuscript PDF,23 pages; SHA-256 f658e05dbb3a5d2c3ae0f76c30b1aa2e96239280db652cb7071cfa14db9784be,23 pages; SHA-256 f658e05dbb3a5d2c3ae0f76c30b1aa2e96239280db652cb7071cfa14db9784be,PASS,paper/main_manuscript.pdf,Synchronized 24 September 2026 with the public-repository URL in Data and code availability.
+Supplement PDF,5 pages; SHA-256 eabb1fa1ebe7716d973ee27a51d9ba2cd025e4f36475143619ac54cd3169ada9,5 pages; SHA-256 eabb1fa1ebe7716d973ee27a51d9ba2cd025e4f36475143619ac54cd3169ada9,PASS,paper/supplementary_material.pdf,Synchronized 24 September 2026; reproducibility wording matches the executable pipeline and machine-readable outputs.
 Bibliography entries,41 numbered references,41 BibTeX entries,PASS,paper/references.bib,
 Figure source PDFs,Main Figs. 1-4 (Fig. 4 has two panels) + Supplement Figs. 1-2,"7 files: fig_exact_provenance.pdf, fig_conflict_location.pdf, fig_difficulty_continuum.pdf, fig_gradients.pdf, fig_uncertain_provenance.pdf, fig_wos_corruption_accuracy.pdf, fig_wos_corruption_catastrophic.pdf",PASS,paper/figures/,
 WOS corpus audit,"46,985 docs; 134 Y classes; 7 YL1 parents; 133 (YL1,YL2) pairs; 3 ambiguous Y→YL1","46,985 docs; 134 Y; 7 parents; 133 pairs; 3 ambiguous",PASS,experiments/wos/run_experiment.py + experiment_core.py,

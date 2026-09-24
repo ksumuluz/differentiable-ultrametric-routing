@@ -8,7 +8,7 @@ under Uncertain Provenance"
 IMPORTANT
 ---------
 This script implements an independent numerical check from the equations printed in the
-authoritative main manuscript and supplementary material. It is not claimed
+current main manuscript and supplementary material. It is not claimed
 to be the historical verification script used during manuscript development.
 
 The publication states that an executable verification used 3,888
