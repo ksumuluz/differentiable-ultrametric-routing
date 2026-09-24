@@ -1,0 +1,65 @@
+{
+  "exact_eps0.0_leaf_accuracy_ultra_minus_hard": {
+    "delta": -0.08263337116912599,
+    "ci_low": -0.0843237837292949,
+    "ci_high": -0.08094295860895707,
+    "cohen_dz": -34.96918688510249,
+    "p_sign_flip": 0.001953125
+  },
+  "exact_eps0.0_catastrophic_wrong_branch_ultra_minus_hard": {
+    "delta": 0.1826475595913734,
+    "ci_low": 0.18155538939293325,
+    "ci_high": 0.18373972978981357,
+    "cohen_dz": 119.63171426851393,
+    "p_sign_flip": 0.001953125
+  },
+  "exact_eps0.0_wrong_branch_mass_mean_ultra_minus_hard": {
+    "delta": 0.23279384181725665,
+    "ci_low": 0.23214118859297436,
+    "ci_high": 0.23344649504153894,
+    "cohen_dz": 255.15951843269855,
+    "p_sign_flip": 0.001953125
+  },
+  "predicted_eps0.0_leaf_accuracy_ultra_minus_hard": {
+    "delta": 0.050737797956867184,
+    "ci_low": 0.04932474426843458,
+    "ci_high": 0.05215085164529979,
+    "cohen_dz": 25.685955501414213,
+    "p_sign_flip": 0.001953125
+  },
+  "predicted_eps0.0_catastrophic_wrong_branch_ultra_minus_hard": {
+    "delta": -0.011293984108967092,
+    "ci_low": -0.013607601019455542,
+    "ci_high": -0.008980367198478643,
+    "cohen_dz": -3.492034265329981,
+    "p_sign_flip": 0.001953125
+  },
+  "predicted_eps0.0_wrong_branch_mass_mean_ultra_minus_hard": {
+    "delta": 0.03149497291986286,
+    "ci_low": 0.029707124970986615,
+    "ci_high": 0.03328282086873911,
+    "cohen_dz": 12.601824666210737,
+    "p_sign_flip": 0.001953125
+  },
+  "corrupted_eps0.3_leaf_accuracy_ultra_minus_hard": {
+    "delta": 0.08320090805902385,
+    "ci_low": 0.08137131707428379,
+    "ci_high": 0.0850304990437639,
+    "cohen_dz": 32.530956186094755,
+    "p_sign_flip": 0.001953125
+  },
+  "corrupted_eps0.3_catastrophic_wrong_branch_ultra_minus_hard": {
+    "delta": -0.05632803632236096,
+    "ci_low": -0.05895524324672554,
+    "ci_high": -0.053700829397996384,
+    "cohen_dz": -15.337448074332066,
+    "p_sign_flip": 0.001953125
+  },
+  "corrupted_eps0.3_wrong_branch_mass_mean_ultra_minus_hard": {
+    "delta": -0.01231870366925955,
+    "ci_low": -0.014486577619057025,
+    "ci_high": -0.010150829719462077,
+    "cohen_dz": -4.064936406120035,
+    "p_sign_flip": 0.001953125
+  }
+}

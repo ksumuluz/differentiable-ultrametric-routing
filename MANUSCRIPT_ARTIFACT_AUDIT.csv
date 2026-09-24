@@ -1,0 +1,53 @@
+item,submission_pdf_reported,repository_value,status,evidence,notes
+Main manuscript PDF,23 pages; SHA-256 adcdbcb89930c85fcb2a09b1cf71d88f896247964f143409e8aaf26fe5b43db2,23 pages; SHA-256 adcdbcb89930c85fcb2a09b1cf71d88f896247964f143409e8aaf26fe5b43db2,PASS,paper/main_manuscript.pdf,
+Supplement PDF,5 pages; SHA-256 f40513fcfe2d13cfa5b245208d9089d3a942c21b0e579b1ee4f4573467db6748,5 pages; SHA-256 f40513fcfe2d13cfa5b245208d9089d3a942c21b0e579b1ee4f4573467db6748,PASS,paper/supplementary_material.pdf,
+Bibliography entries,41 numbered references,41 BibTeX entries,PASS,paper/references.bib,
+Figure source PDFs,Main Figs. 1-4 (Fig. 4 has two panels) + Supplement Figs. 1-2,"7 files: fig_exact_provenance.pdf, fig_conflict_location.pdf, fig_difficulty_continuum.pdf, fig_gradients.pdf, fig_uncertain_provenance.pdf, fig_wos_corruption_accuracy.pdf, fig_wos_corruption_catastrophic.pdf",PASS,paper/figures/,
+WOS corpus audit,"46,985 docs; 134 Y classes; 7 YL1 parents; 133 (YL1,YL2) pairs; 3 ambiguous Y→YL1","46,985 docs; 134 Y; 7 parents; 133 pairs; 3 ambiguous",PASS,experiments/wos/run_experiment.py + experiment_core.py,
+WOS fixed split,"32,889 / 7,048 / 7,048","32,889 / 7,048 / 7,048",PASS,experiments/wos/run_experiment.py,
+Train-derived taxonomy purity,mean 0.9974; minimum 0.7731,mean 0.9974; minimum 0.7731,PASS,experiments/wos/experiment_core.py,
+Parent-head test accuracy,0.7677 ± 0.0021,0.7677 ± 0.0021,PASS,results/wos/head_reproduction.csv,
+Semantic-leaf test accuracy,0.5793 ± 0.0020,0.5793 ± 0.0020,PASS,results/wos/head_reproduction.csv,
+Table 3 accuracy: Hard MAP,0.5287 ± 0.0020,0.5287 ± 0.0020,PASS,results/wos/map_finite_bias_per_seed.csv,
+Table 3 accuracy: MAP + finite bias,0.5786 ± 0.0015,0.5786 ± 0.0015,PASS,results/wos/map_finite_bias_per_seed.csv,
+Table 3 accuracy: Posterior finite bias,0.5794 ± 0.0015,0.5794 ± 0.0015,PASS,results/wos/map_finite_bias_per_seed.csv,
+Table 3 accuracy: Vanilla,0.5793 ± 0.0020,0.5793 ± 0.0020,PASS,results/wos/per_document_key_methods.csv.gz,
+Table 4 / leaf_accuracy,"+0.000851; CI [-0.000005, 0.001707]; sign-flip p=0.0391","+0.000851; CI [-0.000005, +0.001707]; sign-flip p=0.03906",PASS,results/wos/map_finite_bias_comparisons.json,
+Table 4 / nll,"-0.004369; CI [-0.004802, -0.003936]; p=0.00195","-0.004369; CI [-0.004802, -0.003936]; sign-flip p=0.00195",PASS,results/wos/map_finite_bias_comparisons.json,
+Table 4 / wrong_parent_rate,"+0.001603; CI [0.000326, 0.002881]","+0.001603; CI [+0.000326, +0.002881]; sign-flip p=0.02734",PASS,results/wos/map_finite_bias_comparisons.json,
+Table 4 / wrong_branch_mass_mean,"+0.004744; CI [0.004562, 0.004925]","+0.004744; CI [+0.004562, +0.004925]; sign-flip p=0.00195",PASS,results/wos/map_finite_bias_comparisons.json,
+Table 4 / catastrophic_wrong_branch,"+0.003051; CI [0.001601, 0.004500]","+0.003051; CI [+0.001601, +0.004500]; sign-flip p=0.00781",PASS,results/wos/map_finite_bias_comparisons.json,
+Table 5 / map_finite_minus_hard_map / leaf_accuracy,"+0.04987 [0.04425, 0.05565]","+0.04987 [+0.04425, +0.05565]",PASS,results/wos/document_bootstrap.csv,
+Table 5 / map_finite_minus_hard_map / nll,"-5.62723 [-5.86099, -5.39603]","-5.62723 [-5.86099, -5.39603]",PASS,results/wos/document_bootstrap.csv,
+Table 5 / map_finite_minus_hard_map / outside_gold50,"-0.01436 [-0.02033, -0.00850]","-0.01436 [-0.02033, -0.00850]",PASS,results/wos/document_bootstrap.csv,
+Table 5 / posterior_minus_map_finite / leaf_accuracy,"+0.00084 [-0.00024, 0.00190]","+0.00084 [-0.00024, +0.00190]",PASS,results/wos/document_bootstrap.csv,
+Table 5 / posterior_minus_map_finite / nll,"-0.00437 [-0.00590, -0.00284]","-0.00437 [-0.00590, -0.00284]",PASS,results/wos/document_bootstrap.csv,
+Table 5 / posterior_minus_map_finite / outside_gold50,"+0.00308 [0.00121, 0.00495]","+0.00308 [+0.00121, +0.00495]",PASS,results/wos/document_bootstrap.csv,
+Table 5 / posterior_minus_vanilla / leaf_accuracy,"+0.00007 [-0.00104, 0.00114]","+0.00007 [-0.00104, +0.00114]",PASS,results/wos/document_bootstrap.csv,
+Table 5 / posterior_minus_vanilla / nll,"-0.00213 [-0.00407, -0.00018]","-0.00213 [-0.00407, -0.00018]",PASS,results/wos/document_bootstrap.csv,
+Table 5 / posterior_minus_vanilla / outside_gold50,"-0.00897 [-0.01061, -0.00734]","-0.00897 [-0.01061, -0.00734]",PASS,results/wos/document_bootstrap.csv,
+Corruption eps=0.3: Posterior finite bias accuracy,0.5783 ± 0.0021,0.5783 ± 0.0021,PASS,results/wos/map_finite_bias_per_seed.csv,
+Corruption eps=0.3: MAP + finite bias accuracy,0.5767 ± 0.0013,0.5767 ± 0.0013,PASS,results/wos/map_finite_bias_per_seed.csv,
+Corruption eps=0.3: Hard MAP accuracy,0.4951 ± 0.0026,0.4951 ± 0.0026,PASS,results/wos/map_finite_bias_per_seed.csv,
+Corruption eps=0.4: Posterior finite bias accuracy,0.5777 ± 0.0019,0.5777 ± 0.0019,PASS,results/wos/map_finite_bias_per_seed.csv,
+Corruption eps=0.4: MAP + finite bias accuracy,0.5758 ± 0.0017,0.5758 ± 0.0017,PASS,results/wos/map_finite_bias_per_seed.csv,
+Corruption eps=0.4: Hard MAP accuracy,0.4022 ± 0.0031,0.4022 ± 0.0031,PASS,results/wos/map_finite_bias_per_seed.csv,
+eps=0.4 posterior-minus-MAP finite / leaf_accuracy,"+0.00189 [0.00116, 0.00262]","+0.00189 [+0.00116, +0.00262]",PASS,results/wos/map_finite_bias_comparisons.json,
+eps=0.4 posterior-minus-MAP finite / nll,"-0.00893 [-0.00920, -0.00865]","-0.00893 [-0.00920, -0.00865]",PASS,results/wos/map_finite_bias_comparisons.json,
+eps=0.4 posterior-minus-MAP finite / catastrophic_wrong_branch,"-0.00613 [-0.00710, -0.00516]","-0.00613 [-0.00710, -0.00516]",PASS,results/wos/map_finite_bias_comparisons.json,
+Poincare comparator protocol,10-dimensional comparator fixed before test; structural scale selected with development protocol,fit_poincare default dim=10; Poincare tau tuned on validation in tune_method,PASS,experiments/wos/run_experiment.py,
+Supplement Table 1 / improvement vs Vanilla / nll,"+0.00213 [+0.00160, +0.00266]","+0.00213 [+0.00160, +0.00266]",PASS,results/wos/results_per_seed.csv (ten paired paired seeds),Recomputed from included all-method seed-level output; exact to the printed precision.
+Supplement Table 1 / improvement vs Vanilla / wrong_parent_rate,"+0.00515 [+0.00430, +0.00600]","+0.00515 [+0.00430, +0.00600]",PASS,results/wos/results_per_seed.csv (ten paired paired seeds),Recomputed from included all-method seed-level output; exact to the printed precision.
+Supplement Table 1 / improvement vs Vanilla / wrong_branch_mass_mean,"+0.01375 [+0.01354, +0.01396]","+0.01375 [+0.01354, +0.01396]",PASS,results/wos/results_per_seed.csv (ten paired paired seeds),Recomputed from included all-method seed-level output; exact to the printed precision.
+Supplement Table 1 / improvement vs Vanilla / outside_gold50,"+0.00897 [+0.00830, +0.00963]","+0.00897 [+0.00830, +0.00963]",PASS,results/wos/results_per_seed.csv (ten paired paired seeds),Recomputed from included all-method seed-level output; exact to the printed precision.
+Supplement Table 1 / improvement vs Hard MAP / nll,"+5.63160 [+5.59033, +5.67287]","+5.63160 [+5.59033, +5.67287]",PASS,results/wos/results_per_seed.csv (ten paired paired seeds),Recomputed from included all-method seed-level output; exact to the printed precision.
+Supplement Table 1 / improvement vs Hard MAP / wrong_parent_rate,"+0.03696 [+0.03496, +0.03896]","+0.03696 [+0.03496, +0.03896]",PASS,results/wos/results_per_seed.csv (ten paired paired seeds),Recomputed from included all-method seed-level output; exact to the printed precision.
+Supplement Table 1 / improvement vs Hard MAP / wrong_branch_mass_mean,"-0.03149 [-0.03328, -0.02971]","-0.03149 [-0.03328, -0.02971]",PASS,results/wos/results_per_seed.csv (ten paired paired seeds),Recomputed from included all-method seed-level output; exact to the printed precision.
+Supplement Table 1 / improvement vs Hard MAP / outside_gold50,"+0.01129 [+0.00898, +0.01361]","+0.01129 [+0.00898, +0.01361]",PASS,results/wos/results_per_seed.csv (ten paired paired seeds),Recomputed from included all-method seed-level output; exact to the printed precision.
+Main manuscript editable LaTeX source,Source synchronized with supplied 23-page main manuscript,paper/main_manuscript.tex compiles successfully to 23 pages,PASS,paper/main_manuscript.tex,Main and supplement both have synchronized editable sources.
+Supplement editable LaTeX source,Source synchronized with supplied 5-page supplement,paper/supplementary_material.tex compiles successfully to 5 pages,PASS,paper/supplementary_material.tex,Uses reviewer-facing supplement figure filenames and current package-availability wording.
+Controlled machine-readable outputs,Declared in Data and code availability / supplement,Final exact-/uncertain-provenance and difficulty machine-readable results,PASS,results/controlled/*.json,The exact orchestration code used to generate the final JSON is not claimed to be included.
+Theorem-verification results and executable verification code,Declared in main and supplement,"Reported 3,888-point summary plus independent executable verification",PASS,results/theory/reported_theorem_verification.json; theory/verify_depth_sensitivity_theorem.py,"Exact point coordinates for the reported 3,888-point check are not claimed to be included."
+WOS audit/tuning/all-method seed outputs,Declared in supplement,"Included: dataset audit, selected hyperparameters, and 480-row all-method seed-level results",PASS,results/wos/dataset_audit.json; results/wos/selected_hyperparameters.json; results/wos/results_per_seed.csv,Aggregate/corruption/comparison files are included; embeddings are regenerable from the pinned model revision and extraction configuration.
+Tree/Poincare/tuned-prefix original seed-level WOS outputs,Needed for full Table 3 machine-readable provenance,Included in results_per_seed.csv for all ten seeds,PASS,results/wos/results_per_seed.csv,Predicted-provenance means/SDs reproduce Table 3 to printed precision.
+Funding statement,Ministry of Science and Higher Education of the Russian Federation; State Assignment FSER-2025-0013,Recorded in main manuscript PDF and LaTeX source,PASS,paper/main_manuscript.pdf; paper/main_manuscript.tex,

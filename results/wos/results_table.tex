@@ -1,0 +1,17 @@
+\begin{table}[t]
+\centering
+\caption{External WOS-46985 transfer with frozen ModernBERT-base and natural predicted provenance. Mean $\pm$ SD over 10 paired head seeds.}
+\label{tab:wos_external}
+\begin{tabular}{lcccc}
+\toprule
+Method & Leaf Acc. & Macro-F1 & Wrong-parent & Catastrophic wrong-branch \\
+\midrule
+vanilla & 0.5793 $\pm$ 0.0020 & 0.5737 $\pm$ 0.0021 & 0.2005 $\pm$ 0.0027 & 0.2300 $\pm$ 0.0021 \\
+hard\_map & 0.5287 $\pm$ 0.0020 & 0.5216 $\pm$ 0.0034 & 0.2323 $\pm$ 0.0021 & 0.2323 $\pm$ 0.0021 \\
+tree & 0.5796 $\pm$ 0.0016 & 0.5734 $\pm$ 0.0023 & 0.1943 $\pm$ 0.0016 & 0.2196 $\pm$ 0.0019 \\
+poincare & 0.5797 $\pm$ 0.0017 & 0.5736 $\pm$ 0.0021 & 0.1952 $\pm$ 0.0018 & 0.2212 $\pm$ 0.0021 \\
+ultrametric & 0.5794 $\pm$ 0.0016 & 0.5733 $\pm$ 0.0022 & 0.1953 $\pm$ 0.0022 & 0.2210 $\pm$ 0.0018 \\
+geometric\_shell & 0.5794 $\pm$ 0.0017 & 0.5732 $\pm$ 0.0023 & 0.1954 $\pm$ 0.0021 & 0.2209 $\pm$ 0.0016 \\
+\bottomrule
+\end{tabular}
+\end{table}

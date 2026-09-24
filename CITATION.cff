@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+message: "If you use this code or reproducibility package, please cite the associated manuscript."
+title: "Differentiable Ultrametric Routing for Hierarchical Evidence under Uncertain Provenance"
+type: software
+authors:
+  - family-names: Ulizko
+    given-names: "K. A."
+  - family-names: Vatian
+    given-names: "A. S."
+  - family-names: Ulizko
+    given-names: "M. V."
+  - family-names: Tomilov
+    given-names: "I. V."
+  - family-names: Gusarova
+    given-names: "N. F."
+version: "2026-09-23"
+date-released: 2026-09-23

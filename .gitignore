@@ -1,0 +1,31 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.env
+
+# LaTeX build products
+*.aux
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.synctex.gz
+*.toc
+
+# Local model/data caches
+wos_run/
+data/WOS46985/
+*.npy
+*.npz
+*.pt
+*.pth
+*.ckpt
+
+# OS/editor files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

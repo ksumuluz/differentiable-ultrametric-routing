@@ -1,0 +1,2100 @@
+{
+  "protocol": {
+    "seeds": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_main_per_seed": 800,
+    "sweep_seeds": [
+      11,
+      12,
+      13,
+      14,
+      15
+    ],
+    "n_sweep_per_seed": 400,
+    "noise": 0.3,
+    "missing": 0.35,
+    "operational_metric": "catastrophic contamination = any non-root step with >50% attention mass on truly foreign concepts"
+  },
+  "rows": [
+    {
+      "mode": "clean",
+      "p": 0,
+      "method": "hard_map",
+      "seed": 1,
+      "path_acc": 0.5625,
+      "foreign_leakage": 0.0,
+      "catastrophic_contamination_rate": 0.0,
+      "foreign_dominance_rate": 0.0,
+      "mean_confidence": 0.4433409525128544
+    },
+    {
+      "mode": "clean",
+      "p": 0,
+      "method": "hard_map",
+      "seed": 2,
+      "path_acc": 0.59625,
+      "foreign_leakage": 0.0,
+      "catastrophic_contamination_rate": 0.0,
+      "foreign_dominance_rate": 0.0,
+      "mean_confidence": 0.44469511275481993
+    },
+    {
+      "mode": "clean",
+      "p": 0,
+      "method": "hard_map",
+      "seed": 3,
+      "path_acc": 0.5725,
+      "foreign_leakage": 0.0,
+      "catastrophic_contamination_rate": 0.0,
+      "foreign_dominance_rate": 0.0,
+      "mean_confidence": 0.44398628175544474
+    },
+    {
+      "mode": "clean",
+      "p": 0,
+      "method": "hard_map",
+      "seed": 4,
+      "path_acc": 0.63,
+      "foreign_leakage": 0.0,
+      "catastrophic_contamination_rate": 0.0,
+      "foreign_dominance_rate": 0.0,
+      "mean_confidence": 0.445625731485113
+    },
+    {
+      "mode": "clean",
+      "p": 0,
+      "method": "hard_map",
+      "seed": 5,
+      "path_acc": 0.5775,
+      "foreign_leakage": 0.0,
+      "catastrophic_contamination_rate": 0.0,
+      "foreign_dominance_rate": 0.0,
+      "mean_confidence": 0.4436451320889152
+    },
+    {
+      "mode": "clean",
+      "p": 0,
+      "method": "hard_map",
+      "seed": 6,
+      "path_acc": 0.645,
+      "foreign_leakage": 0.0,
+      "catastrophic_contamination_rate": 0.0,
+      "foreign_dominance_rate": 0.0,
+      "mean_confidence": 0.4443733317718966
+    },
+    {
+      "mode": "clean",
+      "p": 0,
+      "method": "hard_map",
+      "seed": 7,
+      "path_acc": 0.615,
+      "foreign_leakage": 0.0,
+      "catastrophic_contamination_rate": 0.0,
+      "foreign_dominance_rate": 0.0,
+      "mean_confidence": 0.4445245671536587
+    },
+    {
+      "mode": "clean",
+      "p": 0,
+      "method": "hard_map",
+      "seed": 8,
+      "path_acc": 0.59125,
+      "foreign_leakage": 0.0,
+      "catastrophic_contamination_rate": 0.0,
+      "foreign_dominance_rate": 0.0,
+      "mean_confidence": 0.44327139603891835
+    },
+    {
+      "mode": "clean",
+      "p": 0,
+      "method": "hard_map",
+      "seed": 9,
+      "path_acc": 0.59,
+      "foreign_leakage": 0.0,
+      "catastrophic_contamination_rate": 0.0,
+      "foreign_dominance_rate": 0.0,
+      "mean_confidence": 0.4439627565670029
+    },
+    {
+      "mode": "clean",
+      "p": 0,
+      "method": "hard_map",
+      "seed": 10,
+      "path_acc": 0.58625,
+      "foreign_leakage": 0.0,
+      "catastrophic_contamination_rate": 0.0,
+      "foreign_dominance_rate": 0.0,
+      "mean_confidence": 0.4433020313641151
+    },
+    {
+      "mode": "clean",
+      "p": 0,
+      "method": "hard_conservative",
+      "seed": 1,
+      "path_acc": 0.5625,
+      "foreign_leakage": 0.0,
+      "catastrophic_contamination_rate": 0.0,
+      "foreign_dominance_rate": 0.0,
+      "mean_confidence": 0.4433409525128544
+    },
+    {
+      "mode": "clean",
+      "p": 0,
+      "method": "hard_conservative",
+      "seed": 2,
+      "path_acc": 0.59625,
+      "foreign_leakage": 0.0,
+      "catastrophic_contamination_rate": 0.0,
+      "foreign_dominance_rate": 0.0,
+      "mean_confidence": 0.44469511275481993
+    },
+    {
+      "mode": "clean",
+      "p": 0,
+      "method": "hard_conservative",
+      "seed": 3,
+      "path_acc": 0.5725,
+      "foreign_leakage": 0.0,
+      "catastrophic_contamination_rate": 0.0,
+      "foreign_dominance_rate": 0.0,
+      "mean_confidence": 0.44398628175544474
+    },
+    {
+      "mode": "clean",
+      "p": 0,
+      "method": "hard_conservative",
+      "seed": 4,
+      "path_acc": 0.63,
+      "foreign_leakage": 0.0,
+      "catastrophic_contamination_rate": 0.0,
+      "foreign_dominance_rate": 0.0,
+      "mean_confidence": 0.445625731485113
+    },
+    {
+      "mode": "clean",
+      "p": 0,
+      "method": "hard_conservative",
+      "seed": 5,
+      "path_acc": 0.5775,
+      "foreign_leakage": 0.0,
+      "catastrophic_contamination_rate": 0.0,
+      "foreign_dominance_rate": 0.0,
+      "mean_confidence": 0.4436451320889152
+    },
+    {
+      "mode": "clean",
+      "p": 0,
+      "method": "hard_conservative",
+      "seed": 6,
+      "path_acc": 0.645,
+      "foreign_leakage": 0.0,
+      "catastrophic_contamination_rate": 0.0,
+      "foreign_dominance_rate": 0.0,
+      "mean_confidence": 0.4443733317718966
+    },
+    {
+      "mode": "clean",
+      "p": 0,
+      "method": "hard_conservative",
+      "seed": 7,
+      "path_acc": 0.615,
+      "foreign_leakage": 0.0,
+      "catastrophic_contamination_rate": 0.0,
+      "foreign_dominance_rate": 0.0,
+      "mean_confidence": 0.4445245671536587
+    },
+    {
+      "mode": "clean",
+      "p": 0,
+      "method": "hard_conservative",
+      "seed": 8,
+      "path_acc": 0.59125,
+      "foreign_leakage": 0.0,
+      "catastrophic_contamination_rate": 0.0,
+      "foreign_dominance_rate": 0.0,
+      "mean_confidence": 0.44327139603891835
+    },
+    {
+      "mode": "clean",
+      "p": 0,
+      "method": "hard_conservative",
+      "seed": 9,
+      "path_acc": 0.59,
+      "foreign_leakage": 0.0,
+      "catastrophic_contamination_rate": 0.0,
+      "foreign_dominance_rate": 0.0,
+      "mean_confidence": 0.4439627565670029
+    },
+    {
+      "mode": "clean",
+      "p": 0,
+      "method": "hard_conservative",
+      "seed": 10,
+      "path_acc": 0.58625,
+      "foreign_leakage": 0.0,
+      "catastrophic_contamination_rate": 0.0,
+      "foreign_dominance_rate": 0.0,
+      "mean_confidence": 0.4433020313641151
+    },
+    {
+      "mode": "clean",
+      "p": 0,
+      "method": "soft_exp",
+      "seed": 1,
+      "path_acc": 0.5625,
+      "foreign_leakage": 0.006648960453106161,
+      "catastrophic_contamination_rate": 0.0,
+      "foreign_dominance_rate": 0.0,
+      "mean_confidence": 0.44909275605697163
+    },
+    {
+      "mode": "clean",
+      "p": 0,
+      "method": "soft_exp",
+      "seed": 2,
+      "path_acc": 0.5975,
+      "foreign_leakage": 0.0065266078150617735,
+      "catastrophic_contamination_rate": 0.0,
+      "foreign_dominance_rate": 0.0,
+      "mean_confidence": 0.4506409916794678
+    },
+    {
+      "mode": "clean",
+      "p": 0,
+      "method": "soft_exp",
+      "seed": 3,
+      "path_acc": 0.57625,
+      "foreign_leakage": 0.0066139088115224395,
+      "catastrophic_contamination_rate": 0.0,
+      "foreign_dominance_rate": 0.0,
+      "mean_confidence": 0.44987304465388206
+    },
+    {
+      "mode": "clean",
+      "p": 0,
+      "method": "soft_exp",
+      "seed": 4,
+      "path_acc": 0.63,
+      "foreign_leakage": 0.006700123845598577,
+      "catastrophic_contamination_rate": 0.0,
+      "foreign_dominance_rate": 0.0,
+      "mean_confidence": 0.45140879141511375
+    },
+    {
+      "mode": "clean",
+      "p": 0,
+      "method": "soft_exp",
+      "seed": 5,
+      "path_acc": 0.57625,
+      "foreign_leakage": 0.006662642099124283,
+      "catastrophic_contamination_rate": 0.0,
+      "foreign_dominance_rate": 0.0,
+      "mean_confidence": 0.44940853311422885
+    },
+    {
+      "mode": "clean",
+      "p": 0,
+      "method": "soft_exp",
+      "seed": 6,
+      "path_acc": 0.6375,
+      "foreign_leakage": 0.00659106236239052,
+      "catastrophic_contamination_rate": 0.0,
+      "foreign_dominance_rate": 0.0,
+      "mean_confidence": 0.45005032298434683
+    },
+    {
+      "mode": "clean",
+      "p": 0,
+      "method": "soft_exp",
+      "seed": 7,
+      "path_acc": 0.61125,
+      "foreign_leakage": 0.006656033387062219,
+      "catastrophic_contamination_rate": 0.0,
+      "foreign_dominance_rate": 0.0,
+      "mean_confidence": 0.45037136706239084
+    },
+    {
+      "mode": "clean",
+      "p": 0,
+      "method": "soft_exp",
+      "seed": 8,
+      "path_acc": 0.59125,
+      "foreign_leakage": 0.0066281236569453485,
+      "catastrophic_contamination_rate": 0.0,
+      "foreign_dominance_rate": 0.0,
+      "mean_confidence": 0.4492044591681453
+    },
+    {
+      "mode": "clean",
+      "p": 0,
+      "method": "soft_exp",
+      "seed": 9,
+      "path_acc": 0.59125,
+      "foreign_leakage": 0.006534906145783478,
+      "catastrophic_contamination_rate": 0.0,
+      "foreign_dominance_rate": 0.0,
+      "mean_confidence": 0.4497730138434406
+    },
+    {
+      "mode": "clean",
+      "p": 0,
+      "method": "soft_exp",
+      "seed": 10,
+      "path_acc": 0.58625,
+      "foreign_leakage": 0.006753812225163446,
+      "catastrophic_contamination_rate": 0.0,
+      "foreign_dominance_rate": 0.0,
+      "mean_confidence": 0.44915377204400714
+    },
+    {
+      "mode": "clean",
+      "p": 0,
+      "method": "soft_tel",
+      "seed": 1,
+      "path_acc": 0.5625,
+      "foreign_leakage": 0.006648960453106161,
+      "catastrophic_contamination_rate": 0.0,
+      "foreign_dominance_rate": 0.0,
+      "mean_confidence": 0.44909275605697163
+    },
+    {
+      "mode": "clean",
+      "p": 0,
+      "method": "soft_tel",
+      "seed": 2,
+      "path_acc": 0.5975,
+      "foreign_leakage": 0.0065266078150617735,
+      "catastrophic_contamination_rate": 0.0,
+      "foreign_dominance_rate": 0.0,
+      "mean_confidence": 0.4506409916794678
+    },
+    {
+      "mode": "clean",
+      "p": 0,
+      "method": "soft_tel",
+      "seed": 3,
+      "path_acc": 0.57625,
+      "foreign_leakage": 0.0066139088115224395,
+      "catastrophic_contamination_rate": 0.0,
+      "foreign_dominance_rate": 0.0,
+      "mean_confidence": 0.44987304465388206
+    },
+    {
+      "mode": "clean",
+      "p": 0,
+      "method": "soft_tel",
+      "seed": 4,
+      "path_acc": 0.63,
+      "foreign_leakage": 0.006700123845598577,
+      "catastrophic_contamination_rate": 0.0,
+      "foreign_dominance_rate": 0.0,
+      "mean_confidence": 0.45140879141511375
+    },
+    {
+      "mode": "clean",
+      "p": 0,
+      "method": "soft_tel",
+      "seed": 5,
+      "path_acc": 0.57625,
+      "foreign_leakage": 0.006662642099124283,
+      "catastrophic_contamination_rate": 0.0,
+      "foreign_dominance_rate": 0.0,
+      "mean_confidence": 0.44940853311422885
+    },
+    {
+      "mode": "clean",
+      "p": 0,
+      "method": "soft_tel",
+      "seed": 6,
+      "path_acc": 0.6375,
+      "foreign_leakage": 0.00659106236239052,
+      "catastrophic_contamination_rate": 0.0,
+      "foreign_dominance_rate": 0.0,
+      "mean_confidence": 0.45005032298434683
+    },
+    {
+      "mode": "clean",
+      "p": 0,
+      "method": "soft_tel",
+      "seed": 7,
+      "path_acc": 0.61125,
+      "foreign_leakage": 0.006656033387062219,
+      "catastrophic_contamination_rate": 0.0,
+      "foreign_dominance_rate": 0.0,
+      "mean_confidence": 0.45037136706239084
+    },
+    {
+      "mode": "clean",
+      "p": 0,
+      "method": "soft_tel",
+      "seed": 8,
+      "path_acc": 0.59125,
+      "foreign_leakage": 0.0066281236569453485,
+      "catastrophic_contamination_rate": 0.0,
+      "foreign_dominance_rate": 0.0,
+      "mean_confidence": 0.4492044591681453
+    },
+    {
+      "mode": "clean",
+      "p": 0,
+      "method": "soft_tel",
+      "seed": 9,
+      "path_acc": 0.59125,
+      "foreign_leakage": 0.006534906145783478,
+      "catastrophic_contamination_rate": 0.0,
+      "foreign_dominance_rate": 0.0,
+      "mean_confidence": 0.4497730138434406
+    },
+    {
+      "mode": "clean",
+      "p": 0,
+      "method": "soft_tel",
+      "seed": 10,
+      "path_acc": 0.58625,
+      "foreign_leakage": 0.006753812225163446,
+      "catastrophic_contamination_rate": 0.0,
+      "foreign_dominance_rate": 0.0,
+      "mean_confidence": 0.44915377204400714
+    },
+    {
+      "mode": "noisy",
+      "p": 0.3,
+      "method": "hard_map",
+      "seed": 1,
+      "path_acc": 0.0875,
+      "foreign_leakage": 0.2091743429675879,
+      "catastrophic_contamination_rate": 0.23625,
+      "foreign_dominance_rate": 0.3025,
+      "mean_confidence": 0.5081137939287758
+    },
+    {
+      "mode": "noisy",
+      "p": 0.3,
+      "method": "hard_map",
+      "seed": 2,
+      "path_acc": 0.0925,
+      "foreign_leakage": 0.19898329490190897,
+      "catastrophic_contamination_rate": 0.18125,
+      "foreign_dominance_rate": 0.2475,
+      "mean_confidence": 0.5045759197524019
+    },
+    {
+      "mode": "noisy",
+      "p": 0.3,
+      "method": "hard_map",
+      "seed": 3,
+      "path_acc": 0.095,
+      "foreign_leakage": 0.20511803969571957,
+      "catastrophic_contamination_rate": 0.19625,
+      "foreign_dominance_rate": 0.27875,
+      "mean_confidence": 0.5036045115775007
+    },
+    {
+      "mode": "noisy",
+      "p": 0.3,
+      "method": "hard_map",
+      "seed": 4,
+      "path_acc": 0.0975,
+      "foreign_leakage": 0.20163305779780236,
+      "catastrophic_contamination_rate": 0.1925,
+      "foreign_dominance_rate": 0.2675,
+      "mean_confidence": 0.5065689044581219
+    },
+    {
+      "mode": "noisy",
+      "p": 0.3,
+      "method": "hard_map",
+      "seed": 5,
+      "path_acc": 0.10625,
+      "foreign_leakage": 0.19724100853903095,
+      "catastrophic_contamination_rate": 0.20375,
+      "foreign_dominance_rate": 0.2775,
+      "mean_confidence": 0.5096434711673584
+    },
+    {
+      "mode": "noisy",
+      "p": 0.3,
+      "method": "hard_map",
+      "seed": 6,
+      "path_acc": 0.1075,
+      "foreign_leakage": 0.19785782910596492,
+      "catastrophic_contamination_rate": 0.1825,
+      "foreign_dominance_rate": 0.26125,
+      "mean_confidence": 0.5107837419423991
+    },
+    {
+      "mode": "noisy",
+      "p": 0.3,
+      "method": "hard_map",
+      "seed": 7,
+      "path_acc": 0.09875,
+      "foreign_leakage": 0.2030648727777754,
+      "catastrophic_contamination_rate": 0.205,
+      "foreign_dominance_rate": 0.27,
+      "mean_confidence": 0.5054553527451289
+    },
+    {
+      "mode": "noisy",
+      "p": 0.3,
+      "method": "hard_map",
+      "seed": 8,
+      "path_acc": 0.0975,
+      "foreign_leakage": 0.20468344125553756,
+      "catastrophic_contamination_rate": 0.21,
+      "foreign_dominance_rate": 0.27875,
+      "mean_confidence": 0.5062743363454196
+    },
+    {
+      "mode": "noisy",
+      "p": 0.3,
+      "method": "hard_map",
+      "seed": 9,
+      "path_acc": 0.1025,
+      "foreign_leakage": 0.20281394416363216,
+      "catastrophic_contamination_rate": 0.19625,
+      "foreign_dominance_rate": 0.28125,
+      "mean_confidence": 0.5108135935128966
+    },
+    {
+      "mode": "noisy",
+      "p": 0.3,
+      "method": "hard_map",
+      "seed": 10,
+      "path_acc": 0.11,
+      "foreign_leakage": 0.20093091458781084,
+      "catastrophic_contamination_rate": 0.18375,
+      "foreign_dominance_rate": 0.26625,
+      "mean_confidence": 0.5103969596296986
+    },
+    {
+      "mode": "noisy",
+      "p": 0.3,
+      "method": "hard_conservative",
+      "seed": 1,
+      "path_acc": 0.08375,
+      "foreign_leakage": 0.3850212497389159,
+      "catastrophic_contamination_rate": 0.53375,
+      "foreign_dominance_rate": 0.645,
+      "mean_confidence": 0.4373327396845378
+    },
+    {
+      "mode": "noisy",
+      "p": 0.3,
+      "method": "hard_conservative",
+      "seed": 2,
+      "path_acc": 0.09,
+      "foreign_leakage": 0.38693934268023755,
+      "catastrophic_contamination_rate": 0.5925,
+      "foreign_dominance_rate": 0.67375,
+      "mean_confidence": 0.4365100232747312
+    },
+    {
+      "mode": "noisy",
+      "p": 0.3,
+      "method": "hard_conservative",
+      "seed": 3,
+      "path_acc": 0.09625,
+      "foreign_leakage": 0.38721683284507047,
+      "catastrophic_contamination_rate": 0.5575,
+      "foreign_dominance_rate": 0.66125,
+      "mean_confidence": 0.43501870698439354
+    },
+    {
+      "mode": "noisy",
+      "p": 0.3,
+      "method": "hard_conservative",
+      "seed": 4,
+      "path_acc": 0.085,
+      "foreign_leakage": 0.3852776906528229,
+      "catastrophic_contamination_rate": 0.5925,
+      "foreign_dominance_rate": 0.685,
+      "mean_confidence": 0.43707899359717794
+    },
+    {
+      "mode": "noisy",
+      "p": 0.3,
+      "method": "hard_conservative",
+      "seed": 5,
+      "path_acc": 0.0975,
+      "foreign_leakage": 0.3865179575811563,
+      "catastrophic_contamination_rate": 0.55875,
+      "foreign_dominance_rate": 0.65875,
+      "mean_confidence": 0.43555536656031363
+    },
+    {
+      "mode": "noisy",
+      "p": 0.3,
+      "method": "hard_conservative",
+      "seed": 6,
+      "path_acc": 0.10125,
+      "foreign_leakage": 0.38440601061342433,
+      "catastrophic_contamination_rate": 0.55375,
+      "foreign_dominance_rate": 0.665,
+      "mean_confidence": 0.4351047264981286
+    },
+    {
+      "mode": "noisy",
+      "p": 0.3,
+      "method": "hard_conservative",
+      "seed": 7,
+      "path_acc": 0.1025,
+      "foreign_leakage": 0.3835700692473364,
+      "catastrophic_contamination_rate": 0.57375,
+      "foreign_dominance_rate": 0.66375,
+      "mean_confidence": 0.4348803991086342
+    },
+    {
+      "mode": "noisy",
+      "p": 0.3,
+      "method": "hard_conservative",
+      "seed": 8,
+      "path_acc": 0.0775,
+      "foreign_leakage": 0.38754017011158526,
+      "catastrophic_contamination_rate": 0.57125,
+      "foreign_dominance_rate": 0.6675,
+      "mean_confidence": 0.43590011176908805
+    },
+    {
+      "mode": "noisy",
+      "p": 0.3,
+      "method": "hard_conservative",
+      "seed": 9,
+      "path_acc": 0.08875,
+      "foreign_leakage": 0.3833320913277194,
+      "catastrophic_contamination_rate": 0.55,
+      "foreign_dominance_rate": 0.6425,
+      "mean_confidence": 0.4368754250390628
+    },
+    {
+      "mode": "noisy",
+      "p": 0.3,
+      "method": "hard_conservative",
+      "seed": 10,
+      "path_acc": 0.0925,
+      "foreign_leakage": 0.3870308112021455,
+      "catastrophic_contamination_rate": 0.565,
+      "foreign_dominance_rate": 0.65875,
+      "mean_confidence": 0.4358224166472249
+    },
+    {
+      "mode": "noisy",
+      "p": 0.3,
+      "method": "soft_exp",
+      "seed": 1,
+      "path_acc": 0.0925,
+      "foreign_leakage": 0.05611801563729561,
+      "catastrophic_contamination_rate": 0.0775,
+      "foreign_dominance_rate": 0.0775,
+      "mean_confidence": 0.6085769554130774
+    },
+    {
+      "mode": "noisy",
+      "p": 0.3,
+      "method": "soft_exp",
+      "seed": 2,
+      "path_acc": 0.10125,
+      "foreign_leakage": 0.046767884178235165,
+      "catastrophic_contamination_rate": 0.05,
+      "foreign_dominance_rate": 0.05,
+      "mean_confidence": 0.6009374044481127
+    },
+    {
+      "mode": "noisy",
+      "p": 0.3,
+      "method": "soft_exp",
+      "seed": 3,
+      "path_acc": 0.10625,
+      "foreign_leakage": 0.04828545259043581,
+      "catastrophic_contamination_rate": 0.0575,
+      "foreign_dominance_rate": 0.0575,
+      "mean_confidence": 0.6091420266905203
+    },
+    {
+      "mode": "noisy",
+      "p": 0.3,
+      "method": "soft_exp",
+      "seed": 4,
+      "path_acc": 0.12875,
+      "foreign_leakage": 0.04800744880290852,
+      "catastrophic_contamination_rate": 0.0575,
+      "foreign_dominance_rate": 0.0575,
+      "mean_confidence": 0.6071117580068573
+    },
+    {
+      "mode": "noisy",
+      "p": 0.3,
+      "method": "soft_exp",
+      "seed": 5,
+      "path_acc": 0.10125,
+      "foreign_leakage": 0.05007193614477542,
+      "catastrophic_contamination_rate": 0.06125,
+      "foreign_dominance_rate": 0.06125,
+      "mean_confidence": 0.615702945427504
+    },
+    {
+      "mode": "noisy",
+      "p": 0.3,
+      "method": "soft_exp",
+      "seed": 6,
+      "path_acc": 0.14125,
+      "foreign_leakage": 0.049631220988551154,
+      "catastrophic_contamination_rate": 0.06125,
+      "foreign_dominance_rate": 0.06125,
+      "mean_confidence": 0.6131857657942216
+    },
+    {
+      "mode": "noisy",
+      "p": 0.3,
+      "method": "soft_exp",
+      "seed": 7,
+      "path_acc": 0.1225,
+      "foreign_leakage": 0.05083043748549805,
+      "catastrophic_contamination_rate": 0.0575,
+      "foreign_dominance_rate": 0.0575,
+      "mean_confidence": 0.6099650113286653
+    },
+    {
+      "mode": "noisy",
+      "p": 0.3,
+      "method": "soft_exp",
+      "seed": 8,
+      "path_acc": 0.09875,
+      "foreign_leakage": 0.05170655503307774,
+      "catastrophic_contamination_rate": 0.05875,
+      "foreign_dominance_rate": 0.05875,
+      "mean_confidence": 0.6074454286932481
+    },
+    {
+      "mode": "noisy",
+      "p": 0.3,
+      "method": "soft_exp",
+      "seed": 9,
+      "path_acc": 0.11875,
+      "foreign_leakage": 0.05095949109505148,
+      "catastrophic_contamination_rate": 0.06625,
+      "foreign_dominance_rate": 0.06625,
+      "mean_confidence": 0.6110078539359396
+    },
+    {
+      "mode": "noisy",
+      "p": 0.3,
+      "method": "soft_exp",
+      "seed": 10,
+      "path_acc": 0.10625,
+      "foreign_leakage": 0.050984272691273216,
+      "catastrophic_contamination_rate": 0.05875,
+      "foreign_dominance_rate": 0.05875,
+      "mean_confidence": 0.612622096412385
+    },
+    {
+      "mode": "noisy",
+      "p": 0.3,
+      "method": "soft_tel",
+      "seed": 1,
+      "path_acc": 0.09875,
+      "foreign_leakage": 0.033513178328932317,
+      "catastrophic_contamination_rate": 0.04125,
+      "foreign_dominance_rate": 0.04125,
+      "mean_confidence": 0.6076372849729583
+    },
+    {
+      "mode": "noisy",
+      "p": 0.3,
+      "method": "soft_tel",
+      "seed": 2,
+      "path_acc": 0.10375,
+      "foreign_leakage": 0.026856532722586316,
+      "catastrophic_contamination_rate": 0.0275,
+      "foreign_dominance_rate": 0.0275,
+      "mean_confidence": 0.5999449936764324
+    },
+    {
+      "mode": "noisy",
+      "p": 0.3,
+      "method": "soft_tel",
+      "seed": 3,
+      "path_acc": 0.10625,
+      "foreign_leakage": 0.030061750621442684,
+      "catastrophic_contamination_rate": 0.03625,
+      "foreign_dominance_rate": 0.03625,
+      "mean_confidence": 0.6088088711581722
+    },
+    {
+      "mode": "noisy",
+      "p": 0.3,
+      "method": "soft_tel",
+      "seed": 4,
+      "path_acc": 0.12875,
+      "foreign_leakage": 0.028114167304451546,
+      "catastrophic_contamination_rate": 0.03,
+      "foreign_dominance_rate": 0.03,
+      "mean_confidence": 0.6055831376133747
+    },
+    {
+      "mode": "noisy",
+      "p": 0.3,
+      "method": "soft_tel",
+      "seed": 5,
+      "path_acc": 0.10875,
+      "foreign_leakage": 0.030647021628585867,
+      "catastrophic_contamination_rate": 0.0375,
+      "foreign_dominance_rate": 0.0375,
+      "mean_confidence": 0.6147330854014401
+    },
+    {
+      "mode": "noisy",
+      "p": 0.3,
+      "method": "soft_tel",
+      "seed": 6,
+      "path_acc": 0.1475,
+      "foreign_leakage": 0.029441648494658267,
+      "catastrophic_contamination_rate": 0.03625,
+      "foreign_dominance_rate": 0.03625,
+      "mean_confidence": 0.6106552985558907
+    },
+    {
+      "mode": "noisy",
+      "p": 0.3,
+      "method": "soft_tel",
+      "seed": 7,
+      "path_acc": 0.1225,
+      "foreign_leakage": 0.030636441924221835,
+      "catastrophic_contamination_rate": 0.0325,
+      "foreign_dominance_rate": 0.0325,
+      "mean_confidence": 0.6083946618594728
+    },
+    {
+      "mode": "noisy",
+      "p": 0.3,
+      "method": "soft_tel",
+      "seed": 8,
+      "path_acc": 0.105,
+      "foreign_leakage": 0.027571373217847125,
+      "catastrophic_contamination_rate": 0.03,
+      "foreign_dominance_rate": 0.03,
+      "mean_confidence": 0.6049794573562397
+    },
+    {
+      "mode": "noisy",
+      "p": 0.3,
+      "method": "soft_tel",
+      "seed": 9,
+      "path_acc": 0.12625,
+      "foreign_leakage": 0.028853054643184918,
+      "catastrophic_contamination_rate": 0.02875,
+      "foreign_dominance_rate": 0.02875,
+      "mean_confidence": 0.6105079968894396
+    },
+    {
+      "mode": "noisy",
+      "p": 0.3,
+      "method": "soft_tel",
+      "seed": 10,
+      "path_acc": 0.10875,
+      "foreign_leakage": 0.028509105168749403,
+      "catastrophic_contamination_rate": 0.03,
+      "foreign_dominance_rate": 0.03,
+      "mean_confidence": 0.6122874892299087
+    },
+    {
+      "mode": "incomplete",
+      "p": 0.35,
+      "method": "hard_map",
+      "seed": 1,
+      "path_acc": 0.11625,
+      "foreign_leakage": 0.17726074371709669,
+      "catastrophic_contamination_rate": 0.15125,
+      "foreign_dominance_rate": 0.21125,
+      "mean_confidence": 0.4984381477405771
+    },
+    {
+      "mode": "incomplete",
+      "p": 0.35,
+      "method": "hard_map",
+      "seed": 2,
+      "path_acc": 0.1225,
+      "foreign_leakage": 0.17043108912187827,
+      "catastrophic_contamination_rate": 0.12125,
+      "foreign_dominance_rate": 0.17625,
+      "mean_confidence": 0.49820705850676517
+    },
+    {
+      "mode": "incomplete",
+      "p": 0.35,
+      "method": "hard_map",
+      "seed": 3,
+      "path_acc": 0.11375,
+      "foreign_leakage": 0.17521659863101177,
+      "catastrophic_contamination_rate": 0.1325,
+      "foreign_dominance_rate": 0.18,
+      "mean_confidence": 0.4968773387709336
+    },
+    {
+      "mode": "incomplete",
+      "p": 0.35,
+      "method": "hard_map",
+      "seed": 4,
+      "path_acc": 0.11875,
+      "foreign_leakage": 0.17290584323703606,
+      "catastrophic_contamination_rate": 0.1325,
+      "foreign_dominance_rate": 0.195,
+      "mean_confidence": 0.502183857536934
+    },
+    {
+      "mode": "incomplete",
+      "p": 0.35,
+      "method": "hard_map",
+      "seed": 5,
+      "path_acc": 0.105,
+      "foreign_leakage": 0.1692552417950809,
+      "catastrophic_contamination_rate": 0.14125,
+      "foreign_dominance_rate": 0.195,
+      "mean_confidence": 0.5031449551899745
+    },
+    {
+      "mode": "incomplete",
+      "p": 0.35,
+      "method": "hard_map",
+      "seed": 6,
+      "path_acc": 0.11,
+      "foreign_leakage": 0.16879698997067621,
+      "catastrophic_contamination_rate": 0.1375,
+      "foreign_dominance_rate": 0.1975,
+      "mean_confidence": 0.5026098046905682
+    },
+    {
+      "mode": "incomplete",
+      "p": 0.35,
+      "method": "hard_map",
+      "seed": 7,
+      "path_acc": 0.12875,
+      "foreign_leakage": 0.17560608290969212,
+      "catastrophic_contamination_rate": 0.1375,
+      "foreign_dominance_rate": 0.19125,
+      "mean_confidence": 0.4982772311497503
+    },
+    {
+      "mode": "incomplete",
+      "p": 0.35,
+      "method": "hard_map",
+      "seed": 8,
+      "path_acc": 0.0975,
+      "foreign_leakage": 0.17619441083484752,
+      "catastrophic_contamination_rate": 0.14375,
+      "foreign_dominance_rate": 0.20625,
+      "mean_confidence": 0.4969768903915546
+    },
+    {
+      "mode": "incomplete",
+      "p": 0.35,
+      "method": "hard_map",
+      "seed": 9,
+      "path_acc": 0.11125,
+      "foreign_leakage": 0.1737498870862683,
+      "catastrophic_contamination_rate": 0.13625,
+      "foreign_dominance_rate": 0.2,
+      "mean_confidence": 0.503684621649402
+    },
+    {
+      "mode": "incomplete",
+      "p": 0.35,
+      "method": "hard_map",
+      "seed": 10,
+      "path_acc": 0.1075,
+      "foreign_leakage": 0.17666642101239802,
+      "catastrophic_contamination_rate": 0.14875,
+      "foreign_dominance_rate": 0.20625,
+      "mean_confidence": 0.502747191213811
+    },
+    {
+      "mode": "incomplete",
+      "p": 0.35,
+      "method": "hard_conservative",
+      "seed": 1,
+      "path_acc": 0.0575,
+      "foreign_leakage": 0.4313366003960911,
+      "catastrophic_contamination_rate": 0.7325,
+      "foreign_dominance_rate": 0.82625,
+      "mean_confidence": 0.4355297485002873
+    },
+    {
+      "mode": "incomplete",
+      "p": 0.35,
+      "method": "hard_conservative",
+      "seed": 2,
+      "path_acc": 0.06125,
+      "foreign_leakage": 0.4319588550845229,
+      "catastrophic_contamination_rate": 0.775,
+      "foreign_dominance_rate": 0.8375,
+      "mean_confidence": 0.4351821468401114
+    },
+    {
+      "mode": "incomplete",
+      "p": 0.35,
+      "method": "hard_conservative",
+      "seed": 3,
+      "path_acc": 0.07,
+      "foreign_leakage": 0.4305766572983803,
+      "catastrophic_contamination_rate": 0.7475,
+      "foreign_dominance_rate": 0.82125,
+      "mean_confidence": 0.4340266249659547
+    },
+    {
+      "mode": "incomplete",
+      "p": 0.35,
+      "method": "hard_conservative",
+      "seed": 4,
+      "path_acc": 0.0625,
+      "foreign_leakage": 0.42949908531466596,
+      "catastrophic_contamination_rate": 0.765,
+      "foreign_dominance_rate": 0.83875,
+      "mean_confidence": 0.4354928503089615
+    },
+    {
+      "mode": "incomplete",
+      "p": 0.35,
+      "method": "hard_conservative",
+      "seed": 5,
+      "path_acc": 0.06625,
+      "foreign_leakage": 0.43121075528398406,
+      "catastrophic_contamination_rate": 0.74,
+      "foreign_dominance_rate": 0.8175,
+      "mean_confidence": 0.4345479598251062
+    },
+    {
+      "mode": "incomplete",
+      "p": 0.35,
+      "method": "hard_conservative",
+      "seed": 6,
+      "path_acc": 0.05875,
+      "foreign_leakage": 0.4306142345809384,
+      "catastrophic_contamination_rate": 0.7525,
+      "foreign_dominance_rate": 0.81875,
+      "mean_confidence": 0.4348810581082324
+    },
+    {
+      "mode": "incomplete",
+      "p": 0.35,
+      "method": "hard_conservative",
+      "seed": 7,
+      "path_acc": 0.0725,
+      "foreign_leakage": 0.43051219285396397,
+      "catastrophic_contamination_rate": 0.75625,
+      "foreign_dominance_rate": 0.83375,
+      "mean_confidence": 0.4340025073158641
+    },
+    {
+      "mode": "incomplete",
+      "p": 0.35,
+      "method": "hard_conservative",
+      "seed": 8,
+      "path_acc": 0.05625,
+      "foreign_leakage": 0.431494958830492,
+      "catastrophic_contamination_rate": 0.75625,
+      "foreign_dominance_rate": 0.83625,
+      "mean_confidence": 0.4346532043747282
+    },
+    {
+      "mode": "incomplete",
+      "p": 0.35,
+      "method": "hard_conservative",
+      "seed": 9,
+      "path_acc": 0.0725,
+      "foreign_leakage": 0.4297718597022992,
+      "catastrophic_contamination_rate": 0.7225,
+      "foreign_dominance_rate": 0.805,
+      "mean_confidence": 0.43637274011303334
+    },
+    {
+      "mode": "incomplete",
+      "p": 0.35,
+      "method": "hard_conservative",
+      "seed": 10,
+      "path_acc": 0.06875,
+      "foreign_leakage": 0.43305927165791347,
+      "catastrophic_contamination_rate": 0.765,
+      "foreign_dominance_rate": 0.8375,
+      "mean_confidence": 0.4354418543749298
+    },
+    {
+      "mode": "incomplete",
+      "p": 0.35,
+      "method": "soft_exp",
+      "seed": 1,
+      "path_acc": 0.08,
+      "foreign_leakage": 0.047185869780613315,
+      "catastrophic_contamination_rate": 0.07375,
+      "foreign_dominance_rate": 0.07375,
+      "mean_confidence": 0.6502064390745156
+    },
+    {
+      "mode": "incomplete",
+      "p": 0.35,
+      "method": "soft_exp",
+      "seed": 2,
+      "path_acc": 0.08,
+      "foreign_leakage": 0.040027393201141716,
+      "catastrophic_contamination_rate": 0.0475,
+      "foreign_dominance_rate": 0.0475,
+      "mean_confidence": 0.6550523191894048
+    },
+    {
+      "mode": "incomplete",
+      "p": 0.35,
+      "method": "soft_exp",
+      "seed": 3,
+      "path_acc": 0.0775,
+      "foreign_leakage": 0.045471924473708195,
+      "catastrophic_contamination_rate": 0.0725,
+      "foreign_dominance_rate": 0.0725,
+      "mean_confidence": 0.6531336154592634
+    },
+    {
+      "mode": "incomplete",
+      "p": 0.35,
+      "method": "soft_exp",
+      "seed": 4,
+      "path_acc": 0.08625,
+      "foreign_leakage": 0.04426709359524666,
+      "catastrophic_contamination_rate": 0.06875,
+      "foreign_dominance_rate": 0.06875,
+      "mean_confidence": 0.6561901170782147
+    },
+    {
+      "mode": "incomplete",
+      "p": 0.35,
+      "method": "soft_exp",
+      "seed": 5,
+      "path_acc": 0.09,
+      "foreign_leakage": 0.04828714646127926,
+      "catastrophic_contamination_rate": 0.07,
+      "foreign_dominance_rate": 0.07,
+      "mean_confidence": 0.6584342034669204
+    },
+    {
+      "mode": "incomplete",
+      "p": 0.35,
+      "method": "soft_exp",
+      "seed": 6,
+      "path_acc": 0.0925,
+      "foreign_leakage": 0.04377661388948066,
+      "catastrophic_contamination_rate": 0.06875,
+      "foreign_dominance_rate": 0.06875,
+      "mean_confidence": 0.6549169210004709
+    },
+    {
+      "mode": "incomplete",
+      "p": 0.35,
+      "method": "soft_exp",
+      "seed": 7,
+      "path_acc": 0.10125,
+      "foreign_leakage": 0.047248481431253105,
+      "catastrophic_contamination_rate": 0.07375,
+      "foreign_dominance_rate": 0.07375,
+      "mean_confidence": 0.6537021671435997
+    },
+    {
+      "mode": "incomplete",
+      "p": 0.35,
+      "method": "soft_exp",
+      "seed": 8,
+      "path_acc": 0.06875,
+      "foreign_leakage": 0.04143861398920947,
+      "catastrophic_contamination_rate": 0.06125,
+      "foreign_dominance_rate": 0.06125,
+      "mean_confidence": 0.6551015287203825
+    },
+    {
+      "mode": "incomplete",
+      "p": 0.35,
+      "method": "soft_exp",
+      "seed": 9,
+      "path_acc": 0.09,
+      "foreign_leakage": 0.047823341125440726,
+      "catastrophic_contamination_rate": 0.07,
+      "foreign_dominance_rate": 0.07,
+      "mean_confidence": 0.6621335450400071
+    },
+    {
+      "mode": "incomplete",
+      "p": 0.35,
+      "method": "soft_exp",
+      "seed": 10,
+      "path_acc": 0.0725,
+      "foreign_leakage": 0.04553410659332058,
+      "catastrophic_contamination_rate": 0.06375,
+      "foreign_dominance_rate": 0.06375,
+      "mean_confidence": 0.6555711181293364
+    },
+    {
+      "mode": "incomplete",
+      "p": 0.35,
+      "method": "soft_tel",
+      "seed": 1,
+      "path_acc": 0.08625,
+      "foreign_leakage": 0.04229505051808642,
+      "catastrophic_contamination_rate": 0.0875,
+      "foreign_dominance_rate": 0.0875,
+      "mean_confidence": 0.6290961096316157
+    },
+    {
+      "mode": "incomplete",
+      "p": 0.35,
+      "method": "soft_tel",
+      "seed": 2,
+      "path_acc": 0.07625,
+      "foreign_leakage": 0.03474704118047206,
+      "catastrophic_contamination_rate": 0.05625,
+      "foreign_dominance_rate": 0.05625,
+      "mean_confidence": 0.6331883099454597
+    },
+    {
+      "mode": "incomplete",
+      "p": 0.35,
+      "method": "soft_tel",
+      "seed": 3,
+      "path_acc": 0.08625,
+      "foreign_leakage": 0.04032086720670876,
+      "catastrophic_contamination_rate": 0.08125,
+      "foreign_dominance_rate": 0.08125,
+      "mean_confidence": 0.6318599774397538
+    },
+    {
+      "mode": "incomplete",
+      "p": 0.35,
+      "method": "soft_tel",
+      "seed": 4,
+      "path_acc": 0.10125,
+      "foreign_leakage": 0.038916961069299184,
+      "catastrophic_contamination_rate": 0.075,
+      "foreign_dominance_rate": 0.075,
+      "mean_confidence": 0.6352847388007291
+    },
+    {
+      "mode": "incomplete",
+      "p": 0.35,
+      "method": "soft_tel",
+      "seed": 5,
+      "path_acc": 0.09375,
+      "foreign_leakage": 0.04286690392085463,
+      "catastrophic_contamination_rate": 0.0875,
+      "foreign_dominance_rate": 0.0875,
+      "mean_confidence": 0.6370846433948434
+    },
+    {
+      "mode": "incomplete",
+      "p": 0.35,
+      "method": "soft_tel",
+      "seed": 6,
+      "path_acc": 0.1025,
+      "foreign_leakage": 0.03874024366652459,
+      "catastrophic_contamination_rate": 0.0775,
+      "foreign_dominance_rate": 0.0775,
+      "mean_confidence": 0.633893621668952
+    },
+    {
+      "mode": "incomplete",
+      "p": 0.35,
+      "method": "soft_tel",
+      "seed": 7,
+      "path_acc": 0.11,
+      "foreign_leakage": 0.041781211960509594,
+      "catastrophic_contamination_rate": 0.08125,
+      "foreign_dominance_rate": 0.08125,
+      "mean_confidence": 0.6318807553409479
+    },
+    {
+      "mode": "incomplete",
+      "p": 0.35,
+      "method": "soft_tel",
+      "seed": 8,
+      "path_acc": 0.0775,
+      "foreign_leakage": 0.03607549089279629,
+      "catastrophic_contamination_rate": 0.06875,
+      "foreign_dominance_rate": 0.06875,
+      "mean_confidence": 0.6333994406648933
+    },
+    {
+      "mode": "incomplete",
+      "p": 0.35,
+      "method": "soft_tel",
+      "seed": 9,
+      "path_acc": 0.0875,
+      "foreign_leakage": 0.04310468911865036,
+      "catastrophic_contamination_rate": 0.08125,
+      "foreign_dominance_rate": 0.08125,
+      "mean_confidence": 0.6413186012144361
+    },
+    {
+      "mode": "incomplete",
+      "p": 0.35,
+      "method": "soft_tel",
+      "seed": 10,
+      "path_acc": 0.0925,
+      "foreign_leakage": 0.03903279953038386,
+      "catastrophic_contamination_rate": 0.06625,
+      "foreign_dominance_rate": 0.06625,
+      "mean_confidence": 0.6368786881935806
+    }
+  ],
+  "summary": [
+    {
+      "mode": "clean",
+      "method": "hard_map",
+      "n_seeds": 10,
+      "path_acc_mean": 0.596625,
+      "path_acc_sd": 0.02600113512479364,
+      "path_acc_ci95": [
+        0.5780249084254024,
+        0.6152250915745975
+      ],
+      "foreign_leakage_mean": 0.0,
+      "foreign_leakage_sd": 0.0,
+      "foreign_leakage_ci95": [
+        0.0,
+        0.0
+      ],
+      "catastrophic_contamination_rate_mean": 0.0,
+      "catastrophic_contamination_rate_sd": 0.0,
+      "catastrophic_contamination_rate_ci95": [
+        0.0,
+        0.0
+      ],
+      "foreign_dominance_rate_mean": 0.0,
+      "foreign_dominance_rate_sd": 0.0,
+      "foreign_dominance_rate_ci95": [
+        0.0,
+        0.0
+      ],
+      "mean_confidence_mean": 0.44407272934927383,
+      "mean_confidence_sd": 0.0007503858539812539,
+      "mean_confidence_ci95": [
+        0.44353593564648564,
+        0.44460952305206203
+      ]
+    },
+    {
+      "mode": "clean",
+      "method": "hard_conservative",
+      "n_seeds": 10,
+      "path_acc_mean": 0.596625,
+      "path_acc_sd": 0.02600113512479364,
+      "path_acc_ci95": [
+        0.5780249084254024,
+        0.6152250915745975
+      ],
+      "foreign_leakage_mean": 0.0,
+      "foreign_leakage_sd": 0.0,
+      "foreign_leakage_ci95": [
+        0.0,
+        0.0
+      ],
+      "catastrophic_contamination_rate_mean": 0.0,
+      "catastrophic_contamination_rate_sd": 0.0,
+      "catastrophic_contamination_rate_ci95": [
+        0.0,
+        0.0
+      ],
+      "foreign_dominance_rate_mean": 0.0,
+      "foreign_dominance_rate_sd": 0.0,
+      "foreign_dominance_rate_ci95": [
+        0.0,
+        0.0
+      ],
+      "mean_confidence_mean": 0.44407272934927383,
+      "mean_confidence_sd": 0.0007503858539812539,
+      "mean_confidence_ci95": [
+        0.44353593564648564,
+        0.44460952305206203
+      ]
+    },
+    {
+      "mode": "clean",
+      "method": "soft_exp",
+      "n_seeds": 10,
+      "path_acc_mean": 0.5960000000000001,
+      "path_acc_sd": 0.023934227002813797,
+      "path_acc_ci95": [
+        0.5788784854244676,
+        0.6131215145755325
+      ],
+      "foreign_leakage_mean": 0.006631618080175825,
+      "foreign_leakage_sd": 6.978916924455354e-05,
+      "foreign_leakage_ci95": [
+        0.006581693915994778,
+        0.006681542244356872
+      ],
+      "catastrophic_contamination_rate_mean": 0.0,
+      "catastrophic_contamination_rate_sd": 0.0,
+      "catastrophic_contamination_rate_ci95": [
+        0.0,
+        0.0
+      ],
+      "foreign_dominance_rate_mean": 0.0,
+      "foreign_dominance_rate_sd": 0.0,
+      "foreign_dominance_rate_ci95": [
+        0.0,
+        0.0
+      ],
+      "mean_confidence_mean": 0.44989770520219946,
+      "mean_confidence_sd": 0.0007469135915078225,
+      "mean_confidence_ci95": [
+        0.449363395406351,
+        0.4504320149980479
+      ]
+    },
+    {
+      "mode": "clean",
+      "method": "soft_tel",
+      "n_seeds": 10,
+      "path_acc_mean": 0.5960000000000001,
+      "path_acc_sd": 0.023934227002813797,
+      "path_acc_ci95": [
+        0.5788784854244676,
+        0.6131215145755325
+      ],
+      "foreign_leakage_mean": 0.006631618080175825,
+      "foreign_leakage_sd": 6.978916924455354e-05,
+      "foreign_leakage_ci95": [
+        0.006581693915994778,
+        0.006681542244356872
+      ],
+      "catastrophic_contamination_rate_mean": 0.0,
+      "catastrophic_contamination_rate_sd": 0.0,
+      "catastrophic_contamination_rate_ci95": [
+        0.0,
+        0.0
+      ],
+      "foreign_dominance_rate_mean": 0.0,
+      "foreign_dominance_rate_sd": 0.0,
+      "foreign_dominance_rate_ci95": [
+        0.0,
+        0.0
+      ],
+      "mean_confidence_mean": 0.44989770520219946,
+      "mean_confidence_sd": 0.0007469135915078225,
+      "mean_confidence_ci95": [
+        0.449363395406351,
+        0.4504320149980479
+      ]
+    },
+    {
+      "mode": "noisy",
+      "method": "hard_map",
+      "n_seeds": 10,
+      "path_acc_mean": 0.0995,
+      "path_acc_sd": 0.007075976571784593,
+      "path_acc_ci95": [
+        0.09443815129288727,
+        0.10456184870711274
+      ],
+      "foreign_leakage_mean": 0.20215007457927708,
+      "foreign_leakage_sd": 0.0036537521074097943,
+      "foreign_leakage_ci95": [
+        0.19953633777653662,
+        0.20476381138201755
+      ],
+      "catastrophic_contamination_rate_mean": 0.19875,
+      "catastrophic_contamination_rate_sd": 0.01647809994440432,
+      "catastrophic_contamination_rate_ci95": [
+        0.18696227740749555,
+        0.21053772259250447
+      ],
+      "foreign_dominance_rate_mean": 0.27312499999999995,
+      "foreign_dominance_rate_sd": 0.014520698827688854,
+      "foreign_dominance_rate_ci95": [
+        0.2627375178140926,
+        0.2835124821859073
+      ],
+      "mean_confidence_mean": 0.5076230585059701,
+      "mean_confidence_sd": 0.0026925795959720023,
+      "mean_confidence_ci95": [
+        0.5056969030971158,
+        0.5095492139148244
+      ]
+    },
+    {
+      "mode": "noisy",
+      "method": "hard_conservative",
+      "n_seeds": 10,
+      "path_acc_mean": 0.09150000000000001,
+      "path_acc_sd": 0.008053639618899712,
+      "path_acc_ci95": [
+        0.08573877328042115,
+        0.09726122671957887
+      ],
+      "foreign_leakage_mean": 0.38568522260004146,
+      "foreign_leakage_sd": 0.001567657830755296,
+      "foreign_leakage_ci95": [
+        0.38456378774461164,
+        0.38680665745547127
+      ],
+      "catastrophic_contamination_rate_mean": 0.564875,
+      "catastrophic_contamination_rate_sd": 0.018413178402679142,
+      "catastrophic_contamination_rate_ci95": [
+        0.5517030056687736,
+        0.5780469943312264
+      ],
+      "foreign_dominance_rate_mean": 0.662125,
+      "foreign_dominance_rate_sd": 0.012472887262645607,
+      "foreign_dominance_rate_ci95": [
+        0.6532024339592729,
+        0.671047566040727
+      ],
+      "mean_confidence_mean": 0.4360078909163293,
+      "mean_confidence_sd": 0.0008958832703474823,
+      "mean_confidence_ci95": [
+        0.43536701463194266,
+        0.43664876720071594
+      ]
+    },
+    {
+      "mode": "noisy",
+      "method": "soft_exp",
+      "n_seeds": 10,
+      "path_acc_mean": 0.11174999999999999,
+      "path_acc_sd": 0.0154357989391184,
+      "path_acc_ci95": [
+        0.10070789462972699,
+        0.12279210537027299
+      ],
+      "foreign_leakage_mean": 0.05033627146471022,
+      "foreign_leakage_sd": 0.0025666316295251336,
+      "foreign_leakage_ci95": [
+        0.04850021380344667,
+        0.05217232912597376
+      ],
+      "catastrophic_contamination_rate_mean": 0.060625,
+      "catastrophic_contamination_rate_sd": 0.007198813559654581,
+      "catastrophic_contamination_rate_ci95": [
+        0.05547527900530583,
+        0.06577472099469417
+      ],
+      "foreign_dominance_rate_mean": 0.060625,
+      "foreign_dominance_rate_sd": 0.007198813559654581,
+      "foreign_dominance_rate_ci95": [
+        0.05547527900530583,
+        0.06577472099469417
+      ],
+      "mean_confidence_mean": 0.6095697246150531,
+      "mean_confidence_sd": 0.004061653920653387,
+      "mean_confidence_ci95": [
+        0.6066641924332509,
+        0.6124752567968553
+      ]
+    },
+    {
+      "mode": "noisy",
+      "method": "soft_tel",
+      "n_seeds": 10,
+      "path_acc_mean": 0.11562499999999998,
+      "path_acc_sd": 0.015164033654231536,
+      "path_acc_ci95": [
+        0.10477730380307387,
+        0.12647269619692608
+      ],
+      "foreign_leakage_mean": 0.029420427405466028,
+      "foreign_leakage_sd": 0.0019147635037370975,
+      "foreign_leakage_ci95": [
+        0.02805068810976711,
+        0.030790166701164946
+      ],
+      "catastrophic_contamination_rate_mean": 0.032999999999999995,
+      "catastrophic_contamination_rate_sd": 0.004533823502911814,
+      "catastrophic_contamination_rate_ci95": [
+        0.02975669804673992,
+        0.036243301953260074
+      ],
+      "foreign_dominance_rate_mean": 0.032999999999999995,
+      "foreign_dominance_rate_sd": 0.004533823502911814,
+      "foreign_dominance_rate_ci95": [
+        0.02975669804673992,
+        0.036243301953260074
+      ],
+      "mean_confidence_mean": 0.6083532276713328,
+      "mean_confidence_sd": 0.004171325197319466,
+      "mean_confidence_ci95": [
+        0.6053692413843809,
+        0.6113372139582848
+      ]
+    },
+    {
+      "mode": "incomplete",
+      "method": "hard_map",
+      "n_seeds": 10,
+      "path_acc_mean": 0.113125,
+      "path_acc_sd": 0.008999421277689656,
+      "path_acc_ci95": [
+        0.10668720183926536,
+        0.11956279816073465
+      ],
+      "foreign_leakage_mean": 0.1736083308315986,
+      "foreign_leakage_sd": 0.0031387216226246473,
+      "foreign_leakage_ci95": [
+        0.1713630246429346,
+        0.1758536370202626
+      ],
+      "catastrophic_contamination_rate_mean": 0.13825,
+      "catastrophic_contamination_rate_sd": 0.008684276980075348,
+      "catastrophic_contamination_rate_ci95": [
+        0.13203764248894104,
+        0.144462357511059
+      ],
+      "foreign_dominance_rate_mean": 0.195875,
+      "foreign_dominance_rate_sd": 0.011212127610563285,
+      "foreign_dominance_rate_ci95": [
+        0.1878543270831592,
+        0.2038956729168408
+      ],
+      "mean_confidence_mean": 0.500314709684027,
+      "mean_confidence_sd": 0.002771206934607847,
+      "mean_confidence_ci95": [
+        0.49833230766548153,
+        0.5022971117025725
+      ]
+    },
+    {
+      "mode": "incomplete",
+      "method": "hard_conservative",
+      "n_seeds": 10,
+      "path_acc_mean": 0.064625,
+      "path_acc_sd": 0.006181569829384406,
+      "path_acc_ci95": [
+        0.06020297133280996,
+        0.06904702866719004
+      ],
+      "foreign_leakage_mean": 0.4310034471003251,
+      "foreign_leakage_sd": 0.0010482604196277215,
+      "foreign_leakage_ci95": [
+        0.43025356676988874,
+        0.4317533274307615
+      ],
+      "catastrophic_contamination_rate_mean": 0.75125,
+      "catastrophic_contamination_rate_sd": 0.016029486718059448,
+      "catastrophic_contamination_rate_ci95": [
+        0.7397831959770711,
+        0.7627168040229289
+      ],
+      "foreign_dominance_rate_mean": 0.82725,
+      "foreign_dominance_rate_sd": 0.011377365443917337,
+      "foreign_dominance_rate_ci95": [
+        0.8191111230579418,
+        0.8353888769420583
+      ],
+      "mean_confidence_mean": 0.4350130694727209,
+      "mean_confidence_sd": 0.0007390579798497541,
+      "mean_confidence_ci95": [
+        0.43448437924292266,
+        0.4355417597025191
+      ]
+    },
+    {
+      "mode": "incomplete",
+      "method": "soft_exp",
+      "n_seeds": 10,
+      "path_acc_mean": 0.083875,
+      "path_acc_sd": 0.009920692460150596,
+      "path_acc_ci95": [
+        0.07677816413662017,
+        0.09097183586337984
+      ],
+      "foreign_leakage_mean": 0.04510605845406936,
+      "foreign_leakage_sd": 0.002757815058773034,
+      "foreign_leakage_ci95": [
+        0.04313323640638618,
+        0.047078880501752546
+      ],
+      "catastrophic_contamination_rate_mean": 0.06699999999999999,
+      "catastrophic_contamination_rate_sd": 0.007953859999326672,
+      "catastrophic_contamination_rate_ci95": [
+        0.06131015132035783,
+        0.07268984867964215
+      ],
+      "foreign_dominance_rate_mean": 0.06699999999999999,
+      "foreign_dominance_rate_sd": 0.007953859999326672,
+      "foreign_dominance_rate_ci95": [
+        0.06131015132035783,
+        0.07268984867964215
+      ],
+      "mean_confidence_mean": 0.6554441974302117,
+      "mean_confidence_sd": 0.0031730916315454915,
+      "mean_confidence_ci95": [
+        0.6531743044183078,
+        0.6577140904421155
+      ]
+    },
+    {
+      "mode": "incomplete",
+      "method": "soft_tel",
+      "n_seeds": 10,
+      "path_acc_mean": 0.091375,
+      "path_acc_sd": 0.010872525261205678,
+      "path_acc_ci95": [
+        0.08359726396905601,
+        0.09915273603094399
+      ],
+      "foreign_leakage_mean": 0.03978812590642857,
+      "foreign_leakage_sd": 0.0028410295312817422,
+      "foreign_leakage_ci95": [
+        0.037755775811159575,
+        0.04182047600169757
+      ],
+      "catastrophic_contamination_rate_mean": 0.07625000000000001,
+      "catastrophic_contamination_rate_sd": 0.009930312739844153,
+      "catastrophic_contamination_rate_ci95": [
+        0.06914628220310402,
+        0.083353717796896
+      ],
+      "foreign_dominance_rate_mean": 0.07625000000000001,
+      "foreign_dominance_rate_sd": 0.009930312739844153,
+      "foreign_dominance_rate_ci95": [
+        0.06914628220310402,
+        0.083353717796896
+      ],
+      "mean_confidence_mean": 0.6343884886295211,
+      "mean_confidence_sd": 0.003426286908203488,
+      "mean_confidence_ci95": [
+        0.6319374706279008,
+        0.6368395066311414
+      ]
+    }
+  ],
+  "paired": {
+    "noisy_soft_exp_minus_hardmap_acc": {
+      "mean_diff": 0.01225,
+      "ci95": [
+        0.00238408103023882,
+        0.02211591896976118
+      ],
+      "cohen_dz": 0.8882215762160033,
+      "signflip_p": 0.021484375
+    },
+    "noisy_soft_exp_minus_hardmap_cat": {
+      "mean_diff": -0.138125,
+      "ci95": [
+        -0.14667329469624354,
+        -0.12957670530375645
+      ],
+      "cohen_dz": -11.55887532522929,
+      "signflip_p": 0.001953125
+    },
+    "noisy_soft_tel_minus_hardmap_acc": {
+      "mean_diff": 0.016124999999999997,
+      "ci95": [
+        0.0067423298983342195,
+        0.025507670101665776
+      ],
+      "cohen_dz": 1.229408045235337,
+      "signflip_p": 0.00390625
+    },
+    "noisy_soft_tel_minus_hardmap_cat": {
+      "mean_diff": -0.16575,
+      "ci95": [
+        -0.17592097602999685,
+        -0.15557902397000317
+      ],
+      "cohen_dz": -11.657721620318721,
+      "signflip_p": 0.001953125
+    },
+    "incomplete_soft_exp_minus_hardmap_acc": {
+      "mean_diff": -0.029249999999999998,
+      "ci95": [
+        -0.03567329159566329,
+        -0.0228267084043367
+      ],
+      "cohen_dz": -3.257549371379771,
+      "signflip_p": 0.001953125
+    },
+    "incomplete_soft_exp_minus_hardmap_cat": {
+      "mean_diff": -0.07125000000000001,
+      "ci95": [
+        -0.07724103994142921,
+        -0.0652589600585708
+      ],
+      "cohen_dz": -8.507567976295416,
+      "signflip_p": 0.001953125
+    },
+    "incomplete_soft_tel_minus_hardmap_acc": {
+      "mean_diff": -0.021750000000000002,
+      "ci95": [
+        -0.02963832147339055,
+        -0.013861678526609453
+      ],
+      "cohen_dz": -1.9724110835678708,
+      "signflip_p": 0.001953125
+    },
+    "incomplete_soft_tel_minus_hardmap_cat": {
+      "mean_diff": -0.06200000000000001,
+      "ci95": [
+        -0.0691187098314339,
+        -0.05488129016856613
+      ],
+      "cohen_dz": -6.230360447385681,
+      "signflip_p": 0.001953125
+    }
+  },
+  "foreign_salience_sweep": [
+    {
+      "loudness": 0,
+      "method": "hard_map",
+      "path_acc_mean": 0.11949999999999998,
+      "path_acc_ci95": [
+        0.09267100536647416,
+        0.1463289946335258
+      ],
+      "catastrophic_rate_mean": 0.0915,
+      "foreign_dominance_mean": 0.1665,
+      "leakage_mean": 0.18783601439936906
+    },
+    {
+      "loudness": 0,
+      "method": "soft_exp",
+      "path_acc_mean": 0.11750000000000001,
+      "path_acc_ci95": [
+        0.09786756838522444,
+        0.1371324316147756
+      ],
+      "catastrophic_rate_mean": 0.058499999999999996,
+      "foreign_dominance_mean": 0.058499999999999996,
+      "leakage_mean": 0.04995982890217572
+    },
+    {
+      "loudness": 0,
+      "method": "soft_tel",
+      "path_acc_mean": 0.11800000000000002,
+      "path_acc_ci95": [
+        0.107846027414277,
+        0.12815397258572303
+      ],
+      "catastrophic_rate_mean": 0.033,
+      "foreign_dominance_mean": 0.033,
+      "leakage_mean": 0.028371248314337943
+    },
+    {
+      "loudness": 0.5,
+      "method": "hard_map",
+      "path_acc_mean": 0.11400000000000002,
+      "path_acc_ci95": [
+        0.0858392630856997,
+        0.14216073691430034
+      ],
+      "catastrophic_rate_mean": 0.126,
+      "foreign_dominance_mean": 0.19949999999999998,
+      "leakage_mean": 0.1934603483688056
+    },
+    {
+      "loudness": 0.5,
+      "method": "soft_exp",
+      "path_acc_mean": 0.11750000000000001,
+      "path_acc_ci95": [
+        0.09786756838522444,
+        0.1371324316147756
+      ],
+      "catastrophic_rate_mean": 0.0605,
+      "foreign_dominance_mean": 0.0605,
+      "leakage_mean": 0.05137500470333665
+    },
+    {
+      "loudness": 0.5,
+      "method": "soft_tel",
+      "path_acc_mean": 0.11800000000000002,
+      "path_acc_ci95": [
+        0.107846027414277,
+        0.12815397258572303
+      ],
+      "catastrophic_rate_mean": 0.0345,
+      "foreign_dominance_mean": 0.0345,
+      "leakage_mean": 0.0293411680558631
+    },
+    {
+      "loudness": 1.0,
+      "method": "hard_map",
+      "path_acc_mean": 0.10300000000000001,
+      "path_acc_ci95": [
+        0.07653259864493087,
+        0.12946740135506915
+      ],
+      "catastrophic_rate_mean": 0.1785,
+      "foreign_dominance_mean": 0.252,
+      "leakage_mean": 0.20041909281149034
+    },
+    {
+      "loudness": 1.0,
+      "method": "soft_exp",
+      "path_acc_mean": 0.11699999999999999,
+      "path_acc_ci95": [
+        0.09832337568366542,
+        0.13567662431633457
+      ],
+      "catastrophic_rate_mean": 0.0635,
+      "foreign_dominance_mean": 0.0635,
+      "leakage_mean": 0.05331029894749569
+    },
+    {
+      "loudness": 1.0,
+      "method": "soft_tel",
+      "path_acc_mean": 0.11800000000000002,
+      "path_acc_ci95": [
+        0.107846027414277,
+        0.12815397258572303
+      ],
+      "catastrophic_rate_mean": 0.036000000000000004,
+      "foreign_dominance_mean": 0.036000000000000004,
+      "leakage_mean": 0.03075979698354146
+    },
+    {
+      "loudness": 1.2,
+      "method": "hard_map",
+      "path_acc_mean": 0.1015,
+      "path_acc_ci95": [
+        0.07565891676136498,
+        0.12734108323863502
+      ],
+      "catastrophic_rate_mean": 0.203,
+      "foreign_dominance_mean": 0.28099999999999997,
+      "leakage_mean": 0.20350071138825582
+    },
+    {
+      "loudness": 1.2,
+      "method": "soft_exp",
+      "path_acc_mean": 0.11699999999999999,
+      "path_acc_ci95": [
+        0.09832337568366542,
+        0.13567662431633457
+      ],
+      "catastrophic_rate_mean": 0.0675,
+      "foreign_dominance_mean": 0.0675,
+      "leakage_mean": 0.0542561224894967
+    },
+    {
+      "loudness": 1.2,
+      "method": "soft_tel",
+      "path_acc_mean": 0.11699999999999999,
+      "path_acc_ci95": [
+        0.10593768659696098,
+        0.128062313403039
+      ],
+      "catastrophic_rate_mean": 0.038500000000000006,
+      "foreign_dominance_mean": 0.038500000000000006,
+      "leakage_mean": 0.031485435630121246
+    },
+    {
+      "loudness": 1.5,
+      "method": "hard_map",
+      "path_acc_mean": 0.1,
+      "path_acc_ci95": [
+        0.07468634129627949,
+        0.12531365870372052
+      ],
+      "catastrophic_rate_mean": 0.24500000000000002,
+      "foreign_dominance_mean": 0.3085,
+      "leakage_mean": 0.20832411826408087
+    },
+    {
+      "loudness": 1.5,
+      "method": "soft_exp",
+      "path_acc_mean": 0.1165,
+      "path_acc_ci95": [
+        0.09872207705300622,
+        0.13427792294699378
+      ],
+      "catastrophic_rate_mean": 0.07250000000000001,
+      "foreign_dominance_mean": 0.07250000000000001,
+      "leakage_mean": 0.05588379358114297
+    },
+    {
+      "loudness": 1.5,
+      "method": "soft_tel",
+      "path_acc_mean": 0.11699999999999999,
+      "path_acc_ci95": [
+        0.10593768659696098,
+        0.128062313403039
+      ],
+      "catastrophic_rate_mean": 0.0405,
+      "foreign_dominance_mean": 0.0405,
+      "leakage_mean": 0.03277588775907733
+    },
+    {
+      "loudness": 2.0,
+      "method": "hard_map",
+      "path_acc_mean": 0.098,
+      "path_acc_ci95": [
+        0.07117100536647418,
+        0.12482899463352583
+      ],
+      "catastrophic_rate_mean": 0.28300000000000003,
+      "foreign_dominance_mean": 0.33449999999999996,
+      "leakage_mean": 0.21648961043252055
+    },
+    {
+      "loudness": 2.0,
+      "method": "soft_exp",
+      "path_acc_mean": 0.1155,
+      "path_acc_ci95": [
+        0.09931068215291297,
+        0.13168931784708704
+      ],
+      "catastrophic_rate_mean": 0.082,
+      "foreign_dominance_mean": 0.082,
+      "leakage_mean": 0.05922947483405083
+    },
+    {
+      "loudness": 2.0,
+      "method": "soft_tel",
+      "path_acc_mean": 0.11600000000000002,
+      "path_acc_ci95": [
+        0.10489421957920884,
+        0.1271057804207912
+      ],
+      "catastrophic_rate_mean": 0.046,
+      "foreign_dominance_mean": 0.046,
+      "leakage_mean": 0.0355597358827619
+    },
+    {
+      "loudness": 2.5,
+      "method": "hard_map",
+      "path_acc_mean": 0.098,
+      "path_acc_ci95": [
+        0.07117100536647418,
+        0.12482899463352583
+      ],
+      "catastrophic_rate_mean": 0.29900000000000004,
+      "foreign_dominance_mean": 0.3445,
+      "leakage_mean": 0.2241297264013587
+    },
+    {
+      "loudness": 2.5,
+      "method": "soft_exp",
+      "path_acc_mean": 0.11300000000000002,
+      "path_acc_ci95": [
+        0.09608304000275722,
+        0.12991695999724281
+      ],
+      "catastrophic_rate_mean": 0.091,
+      "foreign_dominance_mean": 0.091,
+      "leakage_mean": 0.06351310386217968
+    },
+    {
+      "loudness": 2.5,
+      "method": "soft_tel",
+      "path_acc_mean": 0.1145,
+      "path_acc_ci95": [
+        0.10561103852650311,
+        0.1233889614734969
+      ],
+      "catastrophic_rate_mean": 0.05650000000000001,
+      "foreign_dominance_mean": 0.05650000000000001,
+      "leakage_mean": 0.03929710618121343
+    }
+  ]
+}

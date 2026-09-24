@@ -1,0 +1,16 @@
+contrast,method_a,method_b,metric,delta,boot_ci_low,boot_ci_high,boot_p_two_sided,n_documents,n_seeds,bootstrap_replicates
+map_finite_minus_hard_map,map_finite,hard_map,leaf_accuracy,0.04987230419977298,0.04425368898978433,0.05564699205448355,0.0,7048,10,20000
+map_finite_minus_hard_map,map_finite,hard_map,nll,-5.627232815726921,-5.860988365498095,-5.3960335807112,0.0,7048,10,20000
+map_finite_minus_hard_map,map_finite,hard_map,wrong_parent_rate,-0.03854994324631101,-0.045644154370034044,-0.031625993189557326,0.0,7048,10,20000
+map_finite_minus_hard_map,map_finite,hard_map,wrong_branch_mass_mean,0.026757731499185766,0.021177904700576972,0.03230863493877197,0.0,7048,10,20000
+map_finite_minus_hard_map,map_finite,hard_map,outside_gold50,-0.014358683314415437,-0.020332363791146425,-0.008498864926220205,0.0,7048,10,20000
+posterior_minus_map_finite,posterior_finite,map_finite,leaf_accuracy,0.000837116912599319,-0.00024120317820658352,0.001901248581157775,0.1325,7048,10,20000
+posterior_minus_map_finite,posterior_finite,map_finite,nll,-0.004367969918892954,-0.0059020681953409065,-0.0028379545679305105,0.0,7048,10,20000
+posterior_minus_map_finite,posterior_finite,map_finite,wrong_parent_rate,0.0016174801362088534,0.0001844494892167992,0.003050510783200908,0.026,7048,10,20000
+posterior_minus_map_finite,posterior_finite,map_finite,wrong_branch_mass_mean,0.004744788984649248,0.004191530491655938,0.005290046563877997,0.0,7048,10,20000
+posterior_minus_map_finite,posterior_finite,map_finite,outside_gold50,0.0030788876276958005,0.001206015891032917,0.004951759364358683,0.0015,7048,10,20000
+posterior_minus_vanilla,posterior_finite,vanilla,leaf_accuracy,7.094211123723045e-05,-0.0010357548240635642,0.0011350737797956867,0.9089,7048,10,20000
+posterior_minus_vanilla,posterior_finite,vanilla,nll,-0.0021343373774954555,-0.004065380613367518,-0.00018043452990438246,0.0297,7048,10,20000
+posterior_minus_vanilla,posterior_finite,vanilla,wrong_parent_rate,-0.0051220204313280355,-0.006611804767309875,-0.0036322360953461976,0.0,7048,10,20000
+posterior_minus_vanilla,posterior_finite,vanilla,wrong_branch_mass_mean,-0.013748090958911921,-0.014350309118563023,-0.013158809718323157,0.0,7048,10,20000
+posterior_minus_vanilla,posterior_finite,vanilla,outside_gold50,-0.008967082860385925,-0.010612939841089672,-0.007335414301929626,0.0,7048,10,20000

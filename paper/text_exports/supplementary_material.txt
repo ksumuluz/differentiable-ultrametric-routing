@@ -1,0 +1,216 @@
+                     Supplementary Material
+Differentiable Ultrametric Routing for Hierarchical Evidence under
+                      Uncertain Provenance
+               K. A. Ulizko, A. S. Vatian, M. V. Ulizko, I. V. Tomilov, N. F. Gusarova
+
+
+   This supplement retains technical and secondary material moved from the condensed submission
+manuscript. No result is introduced here that changes the interpretation of the main paper.
+
+
+1     Approximate ultrametric diagnostics
+Exact strong-triangle violations are discontinuous under arbitrarily small perturbations. For an approximate
+distance 𝑑,
+         b define
+                                             h                            i
+                                   𝑉0 = Pr 𝑑b𝑥 𝑦 > max( 𝑑b𝑥𝑧 , 𝑑b𝑦𝑧 ) ,                                  (1)
+                                             "                                #
+                                               𝑑b𝑥 𝑦 − max( 𝑑b𝑥𝑧 , 𝑑b𝑦𝑧 )
+                                   𝑉 𝜀 = Pr                                 >𝜀 ,                         (2)
+                                                 max( 𝑑b𝑥𝑧 , 𝑑b𝑦𝑧 ) + 𝜂
+                                            "                                    #
+                                              max{0, 𝑑b𝑥 𝑦 − max( 𝑑b𝑥𝑧 , 𝑑b𝑦𝑧 )}
+                                 Δultra = E                                        .                     (3)
+                                                     max( 𝑑b𝑥𝑧 , 𝑑b𝑦𝑧 ) + 𝜂
+These diagnostics separate exact logical failure from numerically negligible reversals of the strong triangle
+inequality.
+
+
+2     Proof details for finite-depth routing
+2.1   Hard-vertex exactness
+For one-hot passports, let the first mismatch occur at depth 𝑘 < 𝐷. Then 𝑃[𝑑] = 1 for 𝑑 < 𝑘 and 𝑃[𝑑] = 0
+thereafter. The telescoping relaxation
+                                                𝐷−1
+                                                ∑︁
+                                      𝑑etel =         𝜌 𝑘 (𝑃[𝑘 − 1] − 𝑃[𝑘])
+                                                𝑘=0
+
+has a single first-mismatch mass 𝜌 𝑘 . For the exponential relaxation, e    𝑣 = 𝑘 and 𝑃[𝐷 − 1] = 0, giving
+𝑑eexp = 𝜌 𝑘 . If all levels match, the telescoping sum is zero and the exponential form gives 𝜌 𝐷 − 𝜌 𝐷 = 0.
+Hence both relaxations equal the finite prefix ultrametric at all hard vertices, including the zero diagonal.
+
+2.2   Full depth-sensitivity proof
+At the symmetric point 𝑆[0] = · · · = 𝑆[𝐷 − 1] = 𝑠, for every 𝑑 ≥ 𝑚,
+                                                  𝜕𝑃[𝑑]
+                                                        = 𝑠𝑑 .
+                                                  𝜕𝑆[𝑚]
+
+                                                          1
+Differentiating the telescoping and exponential forms yields
+                                                             𝐷−2
+                                                             ∑︁
+                                    𝐺 tel (𝑚) = (1 − 𝜌)            (𝜌𝑠) 𝑑 + (𝜌𝑠) 𝐷−1 ,                       (4)
+                                                             𝑑=𝑚
+                                                       𝐷−1
+                                                       ∑︁
+                                   𝐺 exp (𝑚) = 𝑎 𝐷           𝑠 𝑑 + 𝜌 𝐷 𝑠 𝐷−1 ,                               (5)
+                                                       𝑑=𝑚
+
+where
+                                             1 − 𝑠𝐷
+                                    𝑣𝐷 = 𝑠          ,            𝑎 𝐷 = (− ln 𝜌) 𝜌 𝑣𝐷 .
+                                              1−𝑠
+Consecutive differences satisfy
+
+                                  𝐺 tel (𝑚) − 𝐺 tel (𝑚 + 1) = (1 − 𝜌) (𝜌𝑠) 𝑚 > 0,                            (6)
+                                                                         𝑚
+                                𝐺 exp (𝑚) − 𝐺 exp (𝑚 + 1) = 𝑎 𝐷 𝑠 > 0,                                       (7)
+
+so both profiles decrease strictly with depth. Because
+
+                        𝐺 tel (𝐷 − 1) = (𝜌𝑠) 𝐷−1 ,           𝐺 exp (𝐷 − 1) = 𝑠 𝐷−1 (𝑎 𝐷 + 𝜌 𝐷 ),
+
+direct substitution gives
+
+                      𝜅tel (𝐷)                                                      𝑇𝐷 (𝑎 𝐷 + 𝜌 𝐷 )
+                               = 𝜌 − (𝐷−1) 𝐶 (𝜌, 𝑠, 𝐷),             𝐶 (𝜌, 𝑠, 𝐷) =                   ,
+                      𝜅exp (𝐷)                                                            𝐸𝐷
+
+with 𝑇𝐷 = 𝐺 tel (0) and 𝐸 𝐷 = 𝐺 exp (0).
+    To control 𝐶 uniformly in depth, set 𝐿 = − ln 𝜌 and
+                                                                         𝐿 𝜌𝑠
+                                           𝑎 − = 𝐿 𝜌𝑠,            𝑎+ =        ,
+                                                                         1−𝑠
+so that 𝑎 − ≤ 𝑎 𝐷 ≤ 𝑎 + . Also define
+                                                                     1−𝜌
+                                        𝑡 − = 1 − 𝜌,         𝑡+ =           + 𝜌𝑠,
+                                                                     1 − 𝜌𝑠
+and
+                                                                     𝑎+
+                                         𝑒− = 𝑎−,        𝑒+ =           + 𝜌 2 𝑠.
+                                                                    1−𝑠
+Then 𝑡 − ≤ 𝑇𝐷 ≤ 𝑡+ and 𝑒 − ≤ 𝐸 𝐷 ≤ 𝑒 + for all 𝐷 ≥ 2, while 𝑎 − ≤ 𝑎 𝐷 + 𝜌 𝐷 ≤ 𝑎 + + 𝜌 2 . Therefore one may
+take
+                                         𝑡− 𝑎−            𝑡+ (𝑎 + + 𝜌 2 )
+                                  𝑐1 =         ,    𝑐2 =                  ,
+                                          𝑒+                    𝑒−
+which are positive, finite, and independent of 𝐷. For 𝜌 = 1/𝑝, the explicit leading factor becomes 𝑝 𝐷−1 .
+
+2.3     Strictness and leakage proofs
+For hard pairs at common-prefix depths 𝑘 and 𝑘 + 1, shell similarities are 1 − 𝜌 𝑘 and 1 − 𝜌 𝑘+1 . Multiplying
+their difference by the DSA structural scale 𝛾 gives
+
+                                                Δ 𝑘 = 𝛾(1 − 𝜌) 𝜌 𝑘 ,
+
+
+                                                             2
+and maintaining a minimum structural separation 𝜏 through depth 𝑘 requires 𝛾 ≥ 𝜏/[(1 − 𝜌) 𝜌 𝑘 ].
+   For the leakage bound, choose any 𝑏 in the nearest shell 𝐵. For every visible 𝑗 ∉ 𝐵,
+
+                                                𝑧 𝑖 𝑗 − 𝑧 𝑖𝑏 ≤ 2𝐸 max − Δ𝑖 .
+
+Since the softmax denominator is at least exp(𝑧 𝑖𝑏 ),
+
+                                                𝐴𝑖 𝑗 ≤ exp(2𝐸 max − Δ𝑖 ).
+
+Summing over 𝑉𝑖 \ 𝐵 and clipping by the trivial bound one gives
+                              ∑︁
+                                   𝐴𝑖 𝑗 ≤ min{1, |𝑉𝑖 \ 𝐵| exp(2𝐸 max − Δ𝑖 )},
+                                   𝑗 ∈𝑉𝑖 \𝐵
+
+and rearrangement yields the sufficient condition
+
+                                                                    |𝑉𝑖 \ 𝐵|
+                                               Δ𝑖 ≥ 2𝐸 max + log
+                                                                        𝜀
+for foreign-shell leakage at most 𝜀.
+
+
+3     Secondary controlled-mechanism results
+3.1    Exact-provenance visual summary
+Figure 1 is the visual counterpart of Table 1 in the main paper. It was removed from the main manuscript
+because the table already reports the exact numerical results.
+
+
+
+
+Figure 1: Ten-seed exact-provenance audit including the taxonomy-fitted hyperbolic baseline and hard/tuned-
+prefix-ultrametric controls.
+
+3.2    Soft-passport optimization detail
+Direct passport optimization separates the problem of learning a soft hierarchical address from the problem
+of consuming an already uncertain passport. Both relaxations recover all prefixes through depth eight. At
+depth 12, the telescoping form reaches 10 levels at the 90% criterion while the exponential form reaches 12;
+for depths 16–96 they plateau near 10 and 14 levels. Conversely, shallow symmetric off-vertex smoothing can
+favor telescoping at fixed strictness. These results are consistent with the local cross-depth sensitivity theorem at its
+stated symmetric point; they are neither a task-level depth guarantee nor a claim of global optimization conditioning.
+
+
+                                                             3
+3.3   Wrong-vote location intervention
+The same high-salience wrong vote placed in a foreign branch leaves structure-aware accuracy near clean
+levels, whereas placing it inside the admissible branch collapses provenance-only methods. Salience and
+semantic polarity are held fixed; only hierarchical provenance changes. The intervention therefore identifies
+provenance routing rather than contradiction semantics.
+
+
+
+
+Figure 2: Paired wrong-vote location intervention. Salience and wrong vote are fixed; only hierarchical
+provenance changes.
+
+3.4   Secondary pretraining compatibility control
+A compact Transformer pretrained on an ontology-independent synthetic masked-token objective and then
+frozen preserves the structural ranking: fixed ultrametric readout reaches 0.805 ± 0.027 versus 0.670 ± 0.029
+for tree distance over five seeds. This is a compatibility control rather than external-validity evidence; a
+randomly initialized frozen encoder already supports substantial structural routing. We therefore do not use
+this result to claim transfer to natural-language pretrained models.
+
+
+4     WOS metric definitions and additional paired statistics
+For a final leaf posterior 𝜋, gold leaf 𝑐∗ , gold parent 𝑏 ∗ = 𝑔(𝑐∗ ), and b
+                                                                           𝑐 = arg max𝑐 𝜋 𝑐 , define
+
+                                                   𝑐) ≠ 𝑏 ∗ },
+                              WrongParent(𝜋) = 1{𝑔(b                                                       (8)
+                                                 ∑︁                          ∑︁
+                          WrongBranchMass(𝜋) =         𝜋𝑐 = 1 −                        𝜋𝑐 ,                (9)
+                                                      𝑐:𝑔 (𝑐)≠𝑏∗          𝑐:𝑔 (𝑐)=𝑏∗
+
+                              OutsideGold50(𝜋) = 1{WrongBranchMass(𝜋) > 0.5}.                             (10)
+
+The last quantity records whether aggregate posterior mass outside the gold parent exceeds 0.5. It does not
+imply that one wrong parent receives majority mass or that the argmax leaf lies outside the gold parent, and it
+is not a calibrated measure of application-level harm. NLL is − log 𝜋 𝑐∗ under the stated reporting floor; ECE
+uses 15 equal-width bins over max𝑐 𝜋 𝑐 .
+    Table 1 reports the paired risk differences omitted from the condensed main manuscript. To keep
+interpretation metric-independent, every entry is expressed as improvement of ultrametric over the comparator:
+comparator risk minus ultrametric risk. Positive values therefore favor ultrametric for every row; the negative
+wrong-branch-mass value against Hard MAP reflects the concentration induced by exact support whenever
+the selected branch is correct.
+
+                                                         4
+Table 1: Paired predicted-provenance improvements for principal risk-oriented metrics. Improvement is
+comparator risk minus ultrametric risk, so positive values favor ultrametric for every row; exact two-sided
+sign-flip tests use ten paired seeds.
+                                          Improvement vs Vanilla                     Improvement vs Hard MAP
+            Metric                Δ              95% CI               𝑝𝑠 𝑓       Δ            95% CI             𝑝𝑠 𝑓
+            NLL                 +.00213     [+.00160, +.00266]       .00195   +5.63160   [+5.59033, +5.67287]   .00195
+            Wrong-parent        +.00515     [+.00430, +.00600]       .00195   +.03696     [+.03496, +.03896]    .00195
+            Wrong-branch mass   +.01375     [+.01354, +.01396]       .00195   −.03149     [ −.03328, −.02971]   .00195
+            Outside-gold > .5   +.00897     [+.00830, +.00963]       .00195   +.01129     [+.00898, +.01361]    .00195
+
+
+
+
+5    Material retained in the reproducibility package
+The package records the exact ModernBERT model revision, embedding-extraction configuration, split
+definition, label-consistency audit, validation-selected routing parameters, all ten seed-level outputs, matched
+MAP-plus-finite-bias ablation, paired seed statistics, document-bootstrap outputs, theorem-verification results
+and executable verification code, and figure/table regeneration scripts. Candidate hyperparameter grids and full
+per-seed outputs remain machine-readable rather than duplicated in the manuscript.
+
+
+
+
+                                                                 5

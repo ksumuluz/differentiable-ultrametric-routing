@@ -1,0 +1,963 @@
+ Differentiable Ultrametric Routing for Hierarchical Evidence
+                 under Uncertain Provenance
+
+      K. A. Ulizko, A. S. Vatian, M. V. Ulizko, I. V. Tomilov, N. F. Gusarova
+
+
+
+
+Abstract
+Knowledge-based systems often combine learned semantic evidence with hierarchical
+knowledge such as taxonomies, ontologies, or provenance labels. When structural
+assignments are uncertain, exact-support commitment to one selected branch can
+create brittle routing errors. We study this robustness–commitment trade-off
+using nested prefix-ultrametric shells. Dual-Space Attention (DSA) implements
+the resulting structural compatibility as a pre-softmax attention bias; the same
+compatibility can also be applied post-encoder. We derive finite-depth continuous
+extensions for factorized soft hierarchical passports, prove an explicit cross-depth
+sensitivity gap, and establish a context-dependent foreign-shell leakage bound.
+    Controlled depth-four experiments show no detectable accuracy difference
+between normalized hard gating and fixed ultrametric routing under exact provenance,
+while a development-tuned prefix-ultrametric schedule slightly outperforms the
+fixed 𝜌 = 0.2 schedule. Under 30% provenance noise, soft telescoping routing
+reduces catastrophic foreign-branch contamination from 0.199 to 0.033 and modestly
+improves path accuracy over hard MAP. On WOS-46985 with frozen ModernBERT-
+base representations, oracle parent information favors hard gating. With model-
+predicted parents, exact-support hard MAP reaches 0.5287 leaf accuracy, whereas
+MAP plus finite bias reaches 0.5786: a matched gain of about 0.0499 from removing
+zero-support commitment while retaining MAP provenance. Preserving the full
+parent posterior raises accuracy only to 0.5794 (+0.0008 versus matched MAP finite
+bias), and this unperturbed accuracy effect is not robust across inferential procedures;
+the hierarchy-agnostic classifier reaches 0.5793. Posterior preservation has clearer
+effects on likelihood, branch concentration, and robustness under stronger controlled
+corruption. WOS is therefore evidence for the finite-bias routing principle
+under uncertain provenance, not for general multi-depth ultrametric superiority or
+end-to-end DSA.
+Keywords: hierarchical knowledge, uncertain provenance, evidence routing,
+ultrametric geometry, structural attention, robustness
+1. Introduction
+    Knowledge-based intelligent systems increasingly combine learned semantic
+evidence with explicit structural knowledge, including taxonomies, ontologies,
+provenance chains, hierarchical metadata, retrieval sources, and externally supplied
+branch assignments. These sources need not agree: a semantically salient item can
+originate outside the branch relevant to the current decision, while the structural
+assignment itself can be uncertain. Consider a classifier whose parent predictor
+is uncertain between two taxonomy branches while leaf-level semantic evidence
+remains strong in both: collapsing the parent distribution to one MAP branch
+and then hard-masking the other makes the runner-up branch irrecoverable. Here
+hierarchical provenance acts as structured knowledge that constrains how evidence is
+allocated, rather than as another feature concatenated to the semantic representation.
+The design question is therefore not only whether hierarchical knowledge should
+constrain inference, but how strongly a system should commit to that knowledge
+when provenance is imperfect.
+    We distinguish two design choices that are often conflated. The first is support
+hardness: whether structural routing assigns exactly zero probability outside a
+selected branch or instead uses a finite compatibility bias. The second is provenance
+representation: whether an uncertain branch distribution is collapsed to its MAP
+value or retained during routing. Exact-support gating is attractive when the branch
+is known exactly because admissibility is enforced without ambiguity. When the
+branch is estimated, however, zero-support commitment can make a MAP error
+brittle. Our experiments separate these factors where possible and show that, on
+WOS, avoiding zero-support commitment accounts for most of the robustness gain,
+while posterior preservation has a smaller, metric- and corruption-dependent effect.
+The objective is not universal improvement in semantic classification, but controlled
+use of structural knowledge under uncertain provenance.
+    We realize this principle through nested common-prefix shells. For root-to-node
+addresses, the finite prefix ultrametric
+
+         𝑑 𝜌 (𝑥, 𝑦) = 𝜌 lcp( 𝑥,𝑦)   (𝑥 ≠ 𝑦),       𝑑 𝜌 (𝑥, 𝑥) = 0,   0<𝜌<1        (1)
+
+encodes how deeply two items share a hierarchical prefix. The metric is classical.
+We do not claim the introduction of hierarchical compatibility, ultrametric attention,
+or uncertainty-aware routing in isolation. Rather, we formalize their interaction
+when hierarchical provenance is uncertain: we separate support hardness from
+posterior representation, construct finite-depth continuous extensions that recover
+the same hard hierarchy on exact assignments, and characterize how hard-equivalent
+extensions can differ away from those vertices. Dual-Space Attention (DSA) is an
+attention-level realization of this routing principle. A 𝑝-adic address with 𝜌 = 1/𝑝
+
+                                               2
+is one exact algebraic realization, not a required numerical substrate or a claim of
+uniquely optimal decay.
+     The empirical design separates insertion point from routing principle. In
+controlled synthetic experiments, DSA is evaluated directly as a pre-softmax
+structural bias inside attention, where true provenance, evidence salience, and
+branch membership are observable. In the external natural-language experiment,
+a frozen pretrained encoder supplies document representations and the same hard-
+versus-soft hierarchical compatibility is applied post-encoder. The external assay
+therefore tests transfer of uncertainty-aware routing, not end-to-end insertion of
+DSA into ModernBERT self-attention.
+     The theory addresses two questions specific to soft provenance. First, we derive
+finite-depth telescoping and exponential extensions that agree on every hard address,
+including the zero diagonal, but propagate sensitivity differently across depth. At a
+symmetric soft point, an operational cross-depth sensitivity ratio exhibits an explicit
+factor 𝜌 − (𝐷−1) 𝐶 (𝜌, 𝑠, 𝐷), with 𝐶 bounded in depth for fixed interior 𝜌, 𝑠. Second,
+we bound foreign-shell attention leakage using the structural logit gap, semantic-logit
+magnitude, and the number of visible foreign items.
+     The experiments likewise separate distinct questions about support hardness
+and provenance representation. A depth-four controlled assay compares vanilla,
+Euclidean-address, tree-distance, fitted Poincaré, shuffled-taxonomy, normalized-
+hard, fixed-ultrametric, and development-tuned prefix-ultrametric alternatives. Dif-
+ficulty, provenance-noise, missing-provenance, and salience-shift tests identify
+the robustness–commitment trade-off. WOS-46985 then tests the same commit-
+ment distinction with real text, a released hierarchy, and independently pretrained
+ModernBERT representations.
+     We evaluate three separable hypotheses. H1 asks whether exact support is brittle
+when provenance is uncertain; the matched WOS ablation directly isolates this factor.
+H2 asks whether retaining the full provenance posterior adds value once support is
+finite; this is tested by posterior versus matched MAP finite-bias routing. H3 asks
+whether shared-prefix ultrametric geometry is useful under genuine multi-depth
+structure; this is evaluated primarily in the controlled depth-four hierarchy rather
+than inferred from shallow WOS.
+     The paper makes four contributions. First, it formulates hierarchical provenance
+as uncertain structural knowledge and distinguishes provenance representation from
+support hardness. Second, it introduces differentiable finite-depth prefix-based
+compatibility functions and an attention-level DSA realization that recover the same
+hard hierarchy on exact assignments while permitting controlled off-branch support.
+Third, it characterizes the non-uniqueness of continuous extensions of the same
+hard hierarchy through a depth-sensitivity theorem and derives a context-dependent
+worst-case leakage bound. Fourth, it empirically isolates the mechanisms: controlled
+
+                                          3
+multi-depth experiments test shared-prefix geometry, while the external WOS assay
+shows that avoiding zero-support commitment is the dominant source of its
+robustness gain over Hard MAP, rather than preservation of the complete
+provenance posterior. The resulting claim is conditional: uncertain structural
+knowledge should not automatically be converted into zero-support commitment;
+posterior preservation is a separate design choice; and ultrametric shells are one
+controlled realization rather than a universally superior geometry.
+
+2. Related Work
+2.1. Knowledge-guided routing and uncertain structure
+    Knowledge-based systems combine learned representations with explicit struc-
+ture through knowledge-graph augmentation, retrieval, and constrained decoding [1–
+5]. Neural attention also accepts structural information through relation-dependent
+biases, graph encodings, structured self-attention, and sparse support constraints
+[6–13]. DSA belongs to this broad family, but the structural relation is the nested
+shell induced by hierarchical provenance.
+    A complementary literature treats uncertainty in structured knowledge as first-
+class rather than binary. Knowledge Vault estimates fact correctness during fusion
+[14], uncertain knowledge-graph embeddings retain confidence scores [15], Prob-
+abilistic Soft Logic relaxes logical constraints [16], and entity linking naturally
+maintains multiple structural hypotheses before disambiguation [17]. Our setting
+is narrower: the uncertain variable is hierarchical provenance, and the operational
+question is whether its distribution should be collapsed before it modulates evidence
+routing.
+
+2.2. Hierarchy geometry and continuous structural variables
+    Hyperbolic representations and neural architectures are widely used for tree-
+like data [18–24]. They motivate a direct comparison rather than an assumption
+of inferiority; our controlled assay therefore includes a 10-dimensional Poincaré
+embedding fitted to the same taxonomy under a matched development-tuning
+budget. Prefix or Baire ultrametrics encode hierarchy through longest common
+prefix [25], while classical work establishes finite Euclidean realizations and related
+kernel facts [26–28]. Recent non-Archimedean machine learning includes 𝑝-adic
+learning primitives, ultrametric representation learning, broader non-Archimedean
+formulations, adelic embeddings, and a deterministic ultrametric-attention proof of
+concept [29–34].
+    The closest attention-specific antecedent is Quni-Gudzinas [34], which uses a
+binary-tree proxy encoder and an ultrametric LCA matrix in a small deterministic
+synthetic demonstration. We do not claim novelty for ultrametric attention itself.
+
+                                          4
+The present work changes the question to routing under uncertain hierarchical
+provenance: addresses may be exact, missing, or probabilistic; the construction is
+finite-depth and differentiable; the analysis covers hard-vertex exactness, soft-address
+depth sensitivity, and foreign-shell leakage; and the empirical program combines
+depth-four interventions with WOS-46985 transfer.
+     Continuous relaxations such as Gumbel-softmax and Concrete distributions
+[35,36] and alternative probability mappings such as sparsemax and entmax [37,38]
+provide general machinery for uncertain categorical variables. Our per-level simplex
+representation is standard; the substantive issue is its composition through a prefix
+scan, because continuous extensions that agree at every discrete address can have
+very different cross-depth sensitivity away from those vertices. Hierarchical text
+classification [39,40] supplies an external setting in which semantic class evidence
+and parent-branch information can be observed separately. We use ModernBERT
+[41] only as a frozen representation source, so the WOS experiment evaluates
+post-encoder routing rather than an end-to-end modification of its internal attention.
+
+3. Problem Formulation: Hierarchical Knowledge under Uncertain Provenance
+    Let O be a rooted hierarchy and let semantic evidence for a query or instance
+induce logits 𝐸 𝑗 over candidate items or output concepts 𝑗. Independently, structural
+information induces a hierarchical provenance variable. Under exact provenance
+this variable is a node or path; under uncertain provenance it is represented by a
+distribution 𝑞. In the multi-depth DSA construction, 𝑞 is represented by level-wise
+categorical marginals; in WOS it is the complete seven-way parent posterior.
+    We distinguish three operators. A hierarchy-agnostic decision uses only 𝐸 𝑗 . A
+hard structural commitment replaces 𝑞 by its MAP address and gates or strongly
+suppresses candidates outside that branch. An uncertainty-preserving structural
+route computes a compatibility 𝐻 𝑗 (𝑞, O) and combines it with semantic evidence
+before normalization:
+                                                                 
+                     𝜋( 𝑗 | 𝐸, 𝑞, O) = softmax 𝑗 𝐸 𝑗 + 𝐻 𝑗 (𝑞, O) .                (2)
+The methodological distinction is whether uncertainty is collapsed before structural
+aggregation.                                                             √
+     Equation (2) is insertion-point agnostic. In DSA, 𝐸 𝑖 𝑗 = 𝑄 𝑖 𝐾 ⊤𝑗 / 𝑑 𝑘 and 𝐻𝑖 𝑗 is
+a nested-shell pre-softmax bias between query and key passports. In WOS, 𝐸 𝑗 is
+a semantic leaf logit from a frozen-encoder head and 𝐻 𝑗 is a parent-compatibility
+bias derived from a predicted provenance posterior. The hypothesis is conditional
+rather than monotone: when provenance is externally known to be exact, hard
+constraints should be competitive or preferable; when provenance is predicted,
+finite-bias routing may be more robust than exact-support MAP commitment.
+
+                                           5
+    The WOS assay further isolates provenance representation from support hardness
+through a matched MAP-plus-finite-bias condition: 𝑞 is replaced by 𝛿arg max 𝑞 while
+the same finite ultrametric kernel and validation-selected parameters are retained.
+This directly measures the incremental effect of preserving the parent posterior
+under the same finite-bias operator. The synthetic uncertainty assay compares
+the practically salient endpoints and therefore does not provide the same factorial
+separation at attention level.
+
+4. Nested-Shell Ultrametric Realization
+
+4.1. Addresses, distance, and kernel interpretation
+    Let O be a rooted tree of maximum depth 𝐷. Each outgoing edge receives a
+distinct nonzero symbol, while 0 is reserved for padding after a concept terminates.
+A concept 𝑐 is represented by 𝑎(𝑐) = (𝑎 0 (𝑐), . . . , 𝑎 𝐷−1 (𝑐)), and lcp(𝑐, 𝑐 ′ ) is the
+number of initial coordinates on which two addresses agree. Equation (1) defines an
+ultrametric because
+
+                         lcp(𝑥, 𝑦) ≥ min{lcp(𝑥, 𝑧), lcp(𝑧, 𝑦)},
+
+and 𝜌 𝑘 decreases with 𝑘. If symbols are interpreted as base-𝑝 digits and 𝜌 = 1/𝑝,
+                                                                 ′
+then for distinct concepts 𝑑 𝜌 (𝑐, 𝑐 ′ ) = 𝑝 −𝑣 𝑝 (𝑎 (𝑐) −𝑎 (𝑐 ) ) , giving an exact 𝑝-adic
+realization of common-prefix depth.
+    For 𝑘 = 0, . . . , 𝐷 − 1, let 𝐵 𝑘 [𝑐, 𝑐 ′ ] = 1{lcp(𝑐, 𝑐 ′ ) ≥ 𝑘 } and 𝐵 𝐷 = 𝐼. Each 𝐵 𝑘
+is positive semidefinite after a common permutation into all-ones blocks. Hence,
+for any non-increasing 𝑓 : [0, ∞) → [0, ∞), the radial kernel 𝐾𝑐𝑐′ = 𝑓 (𝑑 𝜌 (𝑐, 𝑐 ′ ))
+is positive semidefinite; if 𝑓 is strictly decreasing on the finite distance set, 𝐾 is
+positive definite. In particular, exp(−𝛾𝑑 𝜌 ) is positive semidefinite for 𝛾 ≥ 0. This is
+a classical kernel fact used only to justify the structural-kernel interpretation; proof
+details and approximate-ultrametric diagnostics are given in the Supplementary
+Material.
+
+5. Differentiable Nested-Shell Routing
+
+5.1. Soft hierarchical passports
+    Let ℎ𝑖 ∈ R𝑑 be a token hidden state. A passport is a stack of categorical
+distributions
+                    𝐴𝑖 [𝑑] ∈ Δ𝑞−1 ,    𝑑 = 0, . . . , 𝐷 − 1,              (3)
+
+
+
+
+                                             6
+obtained by lookup or a learned projector. A conceptness gate 𝑔𝑖 ∈ [0, 1] indicates
+whether the token participates in the ontology prior, and a query-side branch-
+activation gate 𝑟 𝑖 ∈ {0, 1} is zero at the root and one after a non-root hypothesis has
+been established. Per-level agreement and prefix survival are
+                                                                     𝑑
+                                                                     Ö
+               𝑆𝑖 𝑗 [𝑑] = ⟨𝐴𝑖 [𝑑], 𝐴 𝑗 [𝑑]⟩,           𝑃𝑖 𝑗 [𝑑] =          𝑆𝑖 𝑗 [𝑚].   (4)
+                                                                     𝑚=0
+
+For one-hot passports, 𝑃[𝑑] is one until the first mismatch and zero thereafter. The
+factorized representation preserves the available categorical uncertainty at each level
+but does not encode arbitrary dependencies among complete paths.
+
+5.2. Finite-depth continuous extensions
+   A finite tree has a true zero diagonal, so a truncated prefix series must explicitly
+handle the all-match state. With 𝑃[−1] = 1, define the telescoping relaxation
+                                    𝐷−1
+                                    ∑︁                       
+                          𝑑etel =         𝜌 𝑘 𝑃[𝑘 − 1] − 𝑃[𝑘] ,                        (5)
+                                    𝑘=0
+               Í𝐷−1
+          𝑣=
+and, with e      𝑑=0 𝑃[𝑑], the exponential relaxation
+
+                               𝑑eexp = 𝜌 e𝑣 − 𝜌 𝐷 𝑃[𝐷 − 1].                            (6)
+
+If both passports are one-hot, then
+
+                          𝑑etel (𝑖, 𝑗) = 𝑑eexp (𝑖, 𝑗) = 𝑑 𝜌 (𝑐 𝑖 , 𝑐 𝑗 )               (7)
+
+for all pairs, including identical concepts. We call two relaxations hard-equivalent
+when they coincide with the same finite hard hierarchy for every pair of one-hot
+passports. Thus the two extensions are hard-equivalent but can differ away from
+those vertices.
+
+5.3. Depth-sensitivity theorem
+    For a gradient profile 𝐺 (𝑚) > 0, define the operational cross-depth sensitivity
+ratio
+                                      max0≤𝑚<𝐷 𝐺 (𝑚)
+                            𝜅 𝐺 (𝐷) =                   .                        (8)
+                                      min0≤𝑚<𝐷 𝐺 (𝑚)
+This is a descriptive ratio of gradient magnitudes across hierarchy levels, not the
+condition number of a Jacobian or Hessian.
+
+
+
+                                                7
+    Theorem 1 (depth-sensitivity gap). Fix 𝐷 ≥ 2 and 𝜌, 𝑠 ∈ (0, 1) and evaluate
+at 𝑆[0] = · · · = 𝑆[𝐷 − 1] = 𝑠. Let 𝑣 𝐷 = 𝑠(1 − 𝑠 𝐷 )/(1 − 𝑠) and 𝑎 𝐷 = (− ln 𝜌) 𝜌 𝑣𝐷 .
+The derivative magnitudes of Eqs. (5)–(6) are
+                                               𝐷−2
+                                               ∑︁
+                        𝐺 tel (𝑚) = (1 − 𝜌)          (𝜌𝑠) 𝑑 + (𝜌𝑠) 𝐷−1 ,                    (9)
+                                               𝑑=𝑚
+                                         𝐷−1
+                                         ∑︁
+                       𝐺 exp (𝑚) = 𝑎 𝐷         𝑠 𝑑 + 𝜌 𝐷 𝑠 𝐷−1 .                           (10)
+                                         𝑑=𝑚
+
+Both profiles are strictly decreasing in 𝑚, and
+
+                              𝜅 tel (𝐷)
+                                        = 𝜌 − (𝐷−1) 𝐶 (𝜌, 𝑠, 𝐷),                           (11)
+                              𝜅 exp (𝐷)
+
+where for every fixed interior 𝜌, 𝑠 there exist positive finite constants
+𝑐 1 (𝜌, 𝑠), 𝑐 2 (𝜌, 𝑠), independent of 𝐷, such that 𝑐 1 ≤ 𝐶 (𝜌, 𝑠, 𝐷) ≤ 𝑐 2 . For
+the 𝑝-adic specialization 𝜌 = 1/𝑝, the explicit leading factor is 𝑝 𝐷−1 .
+     The proof follows by differentiating prefix survival, establishing strict mono-
+tonicity through consecutive differences, and uniformly bounding the residual factor
+𝐶; explicit constants and the complete derivation are provided in the Supplementary
+Material. An executable verification over 3,888 (𝜌, 𝑠, 𝐷) grid points found no
+monotonicity or bound violation and a worst relative identity error of 1.1 × 10−14 .
+     Practically, Theorem 1 establishes non-uniqueness of a soft relaxation:
+hard-equivalent functions can encode identical exact hierarchical decisions yet
+propagate uncertainty across depth differently. It is a local sensitivity result for the
+passport-composition operator, not a claim of globally better conditioning or easier
+optimization. Once exact constraints are relaxed, the continuous extension is
+therefore a substantive modeling choice rather than an implementation detail.
+
+
+
+
+Figure 1: Finite-depth gradient profiles. The telescoping extension carries additional geometric
+attenuation across depth.
+
+
+
+                                               8
+5.4. Attention-level DSA, strictness, and leakage
+    A direct penalty −𝛾𝑔𝑖 𝑔 𝑗 𝑑emakes a nonconcept token relatively attractive when-
+ever 𝑔 𝑗 = 0. We therefore use the similarity form
+
+                                                         𝑄𝐾 ⊤
+                                                                        
+                                         
+          𝐵𝑖 𝑗 = 𝛾𝑟 𝑖 𝑔𝑖 𝑔 𝑗 1 − 𝑑 (𝑖, 𝑗) ,
+                                 e          𝐴 = softmax √      +𝐵+𝐶 .           (12)
+                                                           𝑑𝑘
+For an active non-root query with ontological visible tokens, this is softmax-
+equivalent to the penalty form up to a query-wise constant. Nonconcept tokens
+remain neutral, and 𝑟 𝑖 = 0 at the root prevents padding or unknown mass from
+manufacturing a structural preference before a branch exists.
+    For hard concept pairs with common-prefix depths 𝑘 and 𝑘 + 1, the adjacent-shell
+structural logit gap is
+                                 Δ 𝑘 = 𝛾(1 − 𝜌) 𝜌 𝑘 ,                           (13)
+so maintaining separation at least 𝜏 through depth 𝑘 requires 𝛾 ≥ 𝜏/[(1 − 𝜌) 𝜌 𝑘 ].
+Small 𝜌 strengthens coarse separation but compresses deep-shell gaps.
+    A complementary leakage result relates structural separation to semantic com-
+petition. Let 𝑧 𝑖 𝑗 = 𝐸 𝑖 𝑗 + 𝐻𝑖 𝑗 , let 𝐵 ⊆ 𝑉𝑖 be a nonempty nearest shell with structural
+logit 𝐻𝑖∗ , assume |𝐸 𝑖 𝑗 | ≤ 𝐸 max , and define
+
+                                Δ𝑖 = min (𝐻𝑖∗ − 𝐻𝑖 𝑗 ) > 0.
+                                      𝑗 ∈𝑉𝑖 \𝐵
+
+Then                ∑︁
+                             𝐴𝑖 𝑗 ≤ min {1, |𝑉𝑖 \ 𝐵| exp(2𝐸 max − Δ𝑖 )} ,             (14)
+                  𝑗 ∈𝑉𝑖 \𝐵
+
+and a sufficient condition for leakage at most 𝜀 is Δ𝑖 ≥ 2𝐸 max + log(|𝑉𝑖 \ 𝐵|/𝜀).
+Equation (14) is a worst-case sufficient bound under the stated assumptions, not
+an empirically calibrated predictor of observed leakage. The cardinality term is
+essential: exponential suppression in the structural gap does not imply context-length
+invariance. Agreement computation costs 𝑂 (𝐿 2 𝐷𝑞), the prefix scan 𝑂 (𝐿 2 𝐷), and
+a materialized mask 𝑂 (𝐿 2 ) memory. Full proofs are deferred to the Supplementary
+Material.
+
+6. Controlled Mechanism Validation
+
+6.1. Protocol and baselines
+    The synthetic generator is designed for attention-level mechanism identification:
+true taxonomy, evidence provenance, and salience are observable, allowing one
+structural factor to vary while the rest are held fixed. The canonical hierarchy has
+
+
+                                                 9
+depth four and branching factor three. Full-path accuracy requires every teacher-
+forced child decision to be correct. DSA is applied directly inside attention. Exact-
+provenance comparisons use ten held-out seeds with 300 traces per seed; corruption
+comparisons use ten held-out seeds with 800 traces per seed. Hyperparameters
+are selected on development seed 0 and then fixed; no test-set tuning is used.
+We report mean±SD and, for superiority claims, paired mean differences, 95% 𝑡
+intervals, Cohen’s 𝑑 𝑧 , and exact paired sign-flip tests. To keep inference focused,
+the reporting hierarchy designates four primary contrasts: hard routing versus fixed
+ultrametric routing in the controlled hierarchy; fixed versus tuned prefix-ultrametric
+routing; WOS Hard MAP versus matched MAP plus finite bias; and WOS matched
+MAP finite bias versus posterior finite bias. Other comparisons are secondary or
+exploratory.
+     Baselines are vanilla attention, Euclidean padded-address similarity, ordinary
+tree-distance similarity, a taxonomy-fitted 10-dimensional Poincaré similarity,
+shuffled taxonomy, a filler-normalized hard gate, fixed ultrametric routing, and a
+development-tuned prefix-ultrametric control. Poincaré coordinates are fitted only
+to taxonomy similarity (mean absolute similarity error 0.0036). The dimension is
+fixed at 10 before test evaluation and serves as a fixed hyperbolic comparator;
+structural-scale tuning uses the same development protocol as for competing
+structural baselines. The tuned prefix-ultrametric control selects decay base 0.33
+rather than the fixed 0.2 schedule, with the zero diagonal unchanged; it tests
+whether that fixed schedule is privileged within the same family.
+     For uncertain provenance, hard MAP collapses each observed level distribution
+to one symbol, whereas soft exponential and telescoping routing consume the full
+available per-level passport distributions. Catastrophic foreign-branch contamination
+is the fraction of traces in which any non-root decision assigns more than 50% of
+attention mass to truly foreign concepts.
+
+6.2. Exact provenance and difficulty continuum
+    Table 1 reports the canonical exact-provenance audit. Fixed ultrametric routing
+reaches 0.6173±0.0176, above ordinary tree distance and the fitted Poincaré baseline.
+The paired ultrametric–Poincaré difference is +0.1493 (95% CI [0.1343, 0.1644],
+𝑑 𝑧 = 7.11, exact sign-flip 𝑝 = 0.00195). Shuffling the taxonomy while retaining the
+same structural-bias machinery reduces accuracy to 0.0133 ± 0.0087; this negative
+control indicates that the gain depends on meaningful hierarchy rather than on an
+arbitrary extra bias term. Two controls further delimit the claim: normalized hard
+gating reaches 0.6183 ± 0.0224 with no detectable difference from fixed ultrametric
+routing, whereas the tuned prefix-ultrametric schedule reaches 0.6230 ± 0.0192
+and exceeds the fixed 𝜌 = 0.2 schedule by 0.0057 (95% CI [0.0010, 0.0103],
+𝑝 = 0.0156). The controlled experiment therefore supports usefulness of shared-
+
+
+                                         10
+prefix ultrametric structure for this tested multi-depth routing problem, not general
+superiority of ultrametrics for hierarchical learning.
+
+             Table 1: Exact-provenance audit, ten held-out seeds (300 traces per seed).
+
+                Method                                       Full-path accuracy
+                Vanilla                                         0.0007 ± 0.0014
+                Euclidean address                               0.0287 ± 0.0077
+                Tree distance                                   0.1497 ± 0.0235
+                Fitted Poincaré (10D)                           0.4680 ± 0.0278
+                Shuffled taxonomy                               0.0133 ± 0.0087
+                Fixed ultrametric (𝜌 = .2)                      0.6173 ± 0.0176
+                Tuned prefix-ultrametric (𝑎 = .33)              0.6230 ± 0.0192
+                Hard gate + filler normalization                0.6183 ± 0.0224
+
+    The effect is not restricted to one adversarial operating point. Increasing
+foreign-evidence pressure continuously from an easy regime (𝜆 = 0) to the canonical
+regime (𝜆 = 1) degrades vanilla from 0.317 to approximately zero and tree distance
+from 0.508 to 0.140, whereas ultrametric routing remains at 0.607 and normalized
+hard routing follows the same high-performing regime. The detailed curve is
+shown in Fig. 2; the redundant exact-provenance summary figure is moved to the
+Supplementary Material.
+
+
+
+
+Figure 2: Difficulty continuum (five seeds). Structural-conflict pressure increases continuously from
+an easy regime to the canonical adversarial regime.
+
+
+6.3. Uncertain provenance and salience shift
+    Direct passport optimization agrees with the theorem’s practical direction: both
+relaxations recover all prefixes through depth eight; at depth 12 the telescoping
+form reaches 10 levels at the 90% criterion while the exponential form reaches
+
+
+                                                11
+12, and at depths 16–96 they plateau near 10 and 14 levels, respectively. Full
+optimization diagnostics are reported in the Supplementary Material because they
+concern learning soft passports rather than consuming already uncertain passports.
+    Table 2 gives the central uncertainty audit. Under 30% noisy provenance,
+soft telescoping improves path accuracy over hard MAP by +0.0161 (95% CI
+[0.0067, 0.0255], 𝑑 𝑧 = 1.23, 𝑝 = 0.00391) and reduces catastrophic contamination
+by −0.1658 (95% CI [−0.1759, −0.1556], 𝑝 = 0.00195). Soft exponential has
+the same qualitative pattern. Under 35% missing provenance, hard MAP remains
+more accurate, but both soft rules approximately halve catastrophic contamination.
+Because MAP collapse and exact-support gating change together in this synthetic
+comparison, the result establishes robustness of the composite soft finite-bias
+operator rather than attributing the entire effect uniquely to posterior preservation.
+
+Table 2: Uncertain-provenance audit, ten held-out seeds (800 traces per seed). Cat. = catastrophic
+foreign-branch contamination rate.
+
+      Regime             Method                   Path accuracy                Cat.
+      Noisy 30%          Hard MAP               0.0995 ± 0.0071        0.1988 ± 0.0165
+                         Soft exponential       0.1118 ± 0.0154        0.0606 ± 0.0072
+                         Soft telescoping       0.1156 ± 0.0152        0.0330 ± 0.0045
+      Missing 35%        Hard MAP               0.1131 ± 0.0090        0.1383 ± 0.0087
+                         Soft exponential       0.0839 ± 0.0099        0.0670 ± 0.0080
+                         Soft telescoping       0.0914 ± 0.0109        0.0763 ± 0.0099
+
+     An out-of-distribution salience sweep gives the operational consequence of
+this difference. At 30% noisy provenance, raising foreign-evidence loudness from
+0 to 2.5 increases hard-MAP catastrophic contamination from 0.092 to 0.299,
+while soft telescoping rises only from 0.033 to 0.057; path accuracy remains
+approximately 0.118 to 0.115 for soft telescoping but falls from 0.120 to 0.098 for
+hard MAP. Figure 3 summarizes the robustness curve. A paired wrong-vote-location
+intervention and a secondary pretrained-synthetic compatibility control are retained
+in the Supplementary Material; together they show that routing responds to evidence
+provenance rather than logical polarity and that the structural ranking does not
+depend on an ontology-specific pretrained encoder.
+
+
+
+
+                                               12
+Figure 3: Operational robustness under foreign-salience shift. Soft routing stabilizes both path
+accuracy and catastrophic foreign-branch contamination under noisy provenance.
+
+
+7. External Transfer on Real Hierarchical Text Data
+
+7.1. Protocol and scope
+     WOS-46985 contains 46,985 scientific abstracts, 134 released flat target classes,
+and seven top-level domains [39,40]. This external assay is explicitly post-encoder: it
+validates the hierarchical routing principle on frozen natural-language representations,
+not the complete attention-level DSA architecture. We use one fixed 70/15/15 split
+stratified by the 134-way target, yielding 32,889 training, 7,048 validation, and 7,048
+test documents. The public hierarchy metadata contain sparse inconsistencies: three
+released flat identifiers occur with more than one observed top-level label and only
+133 distinct (𝑌 𝐿1, 𝑌 𝐿2) pairs occur. We retain the released 134-way 𝑌 field as the
+leaf target and derive a deterministic 134-to-7 leaf–parent map from training rows
+only, assigning each leaf to its modal training 𝑌 𝐿1 parent. Mean training parent
+purity is 0.9974 (minimum 0.7731); validation and test labels never determine this
+map.
+     We use answerdotai/ModernBERT-base [41] as a frozen external encoder.
+Abstracts are truncated to 512 tokens, encoded once, and mean-pooled over non-
+padding last-layer representations. For each of ten paired random seeds, two linear
+heads are trained on the same frozen representation: a seven-way parent head and a
+hierarchy-agnostic 134-way semantic leaf head. Separate scalar temperatures are
+fitted on validation NLL. The parent head reaches 0.7677 ± 0.0021 test accuracy
+and the semantic leaf head 0.5793 ± 0.0020.
+     Let 𝐸 𝑐 = 𝑧 leaf
+                  𝑐 /𝑇leaf , 𝑠 𝑐 = softmax𝑐 (𝐸), 𝑞 𝑏 = softmax𝑏 (𝑧
+                                                                     parent /𝑇
+                                                                              parent ), and
+let 𝑔(𝑐) map leaf 𝑐 to its train-derived parent. For each finite-bias method 𝑚,
+       (𝑚)
+let 𝐾𝑏𝑐    > 0 be the parent-to-leaf compatibility computed from the train-derived
+
+
+
+
+                                              13
+hierarchy. Distributional finite-bias routing is
+                              7
+                             ∑︁                                𝑠 𝑐 𝐶 (𝑚) (𝑞)
+               𝐶𝑐(𝑚) (𝑞) =              (𝑚)
+                                   𝑞 𝑏 𝐾𝑏𝑐  ,        𝜋 𝑐(𝑚) = Í 𝑐 (𝑚)        .    (15)
+                             𝑏=1                               𝑘 𝑠 𝑘 𝐶 𝑘 (𝑞)
+
+                      𝑏 = arg max𝑏 𝑞 𝑏 and
+Hard MAP instead sets b
+
+                                         𝑠 𝑐 1{𝑔(𝑐) = b   𝑏}
+                               𝜋 𝑐hard = Í                   ,                    (16)
+                                                       b 𝑠𝑘
+                                              𝑘:𝑔 (𝑘 )=𝑏
+
+so leaves outside the selected branch receive exactly zero routed probability. Through-
+out, zero support means that the structural routing operator makes candidates outside
+the selected branch inadmissible before normalization; it is distinct from a finite-
+support softmax weight that may become numerically small after normalization. The
+matched MAP-plus-finite-bias control uses 𝑞 MAP = 𝛿 𝑏b in Eq. (15) while retaining
+exactly the same ultrametric kernel and validation-selected parameters as posterior
+finite-bias routing. All routing parameters are selected using validation data and
+frozen before test evaluation; no test-set tuning or retuning is performed for the
+matched control.
+     For reporting NLL only, true-class probability is clipped below at 10−12 ; this
+floor is not applied to predictions, ECE, or hierarchical-risk metrics. We report leaf
+accuracy, macro-F1, NLL, ECE, wrong-parent rate, mean wrong-branch posterior
+mass, and whether aggregate mass outside the gold parent exceeds 0.5. Because
+WOS has only one meaningful parent-to-leaf transition, leaf and path accuracy
+coincide. Replication across ten head seeds estimates run-to-run variability from
+fitted heads and initialization, whereas the document bootstrap quantifies evaluation-
+sample uncertainty conditional on the fixed split and fitted seed ensemble. For three
+interpretation-critical contrasts, per-document differences are averaged across seeds
+and 20,000 resamples of the 7,048 fixed test documents produce percentile 95%
+intervals.
+
+7.2. Oracle versus predicted provenance
+    With oracle gold-parent input, hard gating reaches 0.6855 ± 0.0027 leaf accuracy
+while finite-bias ultrametric routing reaches 0.6029 ± 0.0019; the paired ultrametric–
+hard difference is −0.0826 (95% CI [−0.0843, −0.0809], exact sign-flip 𝑝 =
+0.00195). Because the posterior is one-hot, matched MAP-plus-finite-bias and
+posterior finite-bias routing coincide. Exact branch knowledge therefore favors
+exact-support commitment in this assay.
+    With model-predicted parents, the primary external contrast is Hard MAP versus
+matched MAP plus finite bias: accuracy rises from 0.5287 ± 0.0020 to 0.5786 ±
+
+                                                14
+0.0015, a gain of about 0.0499 obtained by removing zero-support commitment
+while keeping MAP provenance. Posterior finite-bias ultrametric routing reaches
+0.5794 ± 0.0016 and vanilla 0.5793 ± 0.0020. Thus the matched control recovers
+almost the entire hard-versus-posterior gap before posterior preservation is introduced.
+Table 3 reports the full comparison.
+
+Table 3: WOS-46985 with model-predicted branch assignments, ten paired head seeds. Lower is
+better for NLL, ECE, and hierarchical-risk metrics.
+
+  Panel A: classification and calibration
+  Method                         Accuracy              Macro-F1                NLL              ECE
+  Vanilla                        .5793 ± .0020       .5737 ± .0021       1.5791 ± .0024     .0335 ± .0035
+  Hard MAP                       .5287 ± .0020       .5216 ± .0034       7.2086 ± .0598     .1272 ± .0016
+  MAP + finite bias              .5786 ± .0015       .5725 ± .0021       1.5813 ± .0032     .0349 ± .0020
+  Tree kernel                    .5796 ± .0016       .5734 ± .0023       1.5773 ± .0029     .0342 ± .0014
+  Poincaré (10D)                 .5797 ± .0017       .5736 ± .0021       1.5772 ± .0026     .0337 ± .0018
+  Ultrametric                    .5794 ± .0016       .5733 ± .0022       1.5770 ± .0028     .0337 ± .0019
+  Tuned prefix-ultrametric       .5794 ± .0017       .5732 ± .0023       1.5769 ± .0027     .0338 ± .0025
+  Panel B: hierarchical risk
+  Method                         Wrong-parent      Wrong-branch mass    Outside-gold > .5
+  Vanilla                        .2005 ± .0027       .2775 ± .0012       .2300 ± .0021
+  Hard MAP                       .2323 ± .0021       .2323 ± .0021       .2323 ± .0021
+  MAP + finite bias              .1937 ± .0015       .2590 ± .0009       .2179 ± .0016
+  Tree kernel                    .1943 ± .0016       .2613 ± .0009       .2196 ± .0019
+  Poincaré (10D)                 .1952 ± .0018       .2639 ± .0019       .2212 ± .0021
+  Ultrametric                    .1953 ± .0022       .2638 ± .0009       .2210 ± .0018
+  Tuned prefix-ultrametric       .1954 ± .0021       .2638 ± .0012       .2209 ± .0016
+
+
+     Preserving the full parent posterior has a much smaller, metric-dependent effect
+once the finite-bias kernel is fixed. Relative to matched MAP-plus-finite-bias
+routing, posterior routing changes accuracy by +0.000851: the exact paired sign-flip
+test gives p = 0.0391, whereas the paired t interval [-0.000005, 0.001707] includes
+zero. Posterior routing reduces NLL by -0.004369 (95% CI [-0.004802, -0.003936],
+p = 0.00195). It also increases wrong-parent rate, wrong-branch mass, and the
+outside-gold-parent > 0.5 rate in the unperturbed predicted condition, consistent
+with leaving probability on plausible alternative branches. Table 4 reports this
+matched ablation.
+
+Table 4: Matched provenance-representation ablation under model-predicted WOS parents. Δ is
+posterior finite-bias minus matched MAP finite-bias.
+
+ Metric                  Posterior + finite bias    MAP + finite bias      Δ                95% CI
+ Leaf accuracy                  .5794 ± .0015         .5786 ± .0015     +.000851      [ −.000005, .001707]
+ NLL                           1.5770 ± .0028        1.5813 ± .0032     −.004369     [ −.004802, −.003936]
+ Wrong-parent                   .1953 ± .0021         .1937 ± .0015     +.001603       [.000326, .002881]
+ Wrong-branch mass              .2638 ± .0009         .2590 ± .0009     +.004744       [.004562, .004925]
+ Outside-gold > .5              .2210 ± .0018         .2179 ± .0016     +.003051       [.001601, .004500]
+
+
+
+                                                       15
+    The document bootstrap leads to the same substantive interpretation (Table 5).
+MAP plus finite bias exceeds exact-support hard MAP by +0.04987 accuracy (95%
+bootstrap CI [0.04425, 0.05565]). In contrast, posterior preservation adds +0.00084
+accuracy relative to matched MAP finite bias, with a bootstrap interval crossing zero,
+while NLL improves by −0.00437. Relative to vanilla, posterior finite-bias routing
+again shows no detectable accuracy difference. The very large NLL contrast between
+MAP finite bias and exact-support hard MAP is dominated by zero-probability
+branch errors evaluated under the stated 10−12 reporting floor; it should not be
+interpreted as an ordinary calibration gain of comparable magnitude.
+
+Table 5: Paired document-bootstrap sensitivity analysis for key WOS contrasts. Differences are first
+method minus second method; percentile 95% CIs use 20,000 resamples of 7,048 fixed test documents.
+
+Contrast                Accuracy Δ [95% CI]           NLL Δ [95% CI]          OutsideGold50 Δ [95% CI]
+MAP+FB − Hard MAP +.04987 [.04425, .05565] −5.62723 [ −5.86099, −5.39603] −.01436 [ −.02033, −.00850]
+Posterior − MAP+FB  +.00084 [ −.00024, .00190] −.00437 [ −.00590, −.00284]  +.00308 [.00121, .00495]
+Posterior − Vanilla +.00007 [ −.00104, .00114] −.00213 [ −.00407, −.00018] −.00897 [ −.01061, −.00734]
+
+
+
+    The paired sign-flip test detects a small accuracy difference, whereas both the
+paired t interval and document-bootstrap interval include zero. Given the effect size
+(+0.00085) and its sensitivity to inferential procedure, we do not treat unperturbed
+leaf accuracy as a robust benefit of posterior preservation. Clearer effects appear in
+NLL, branch concentration, and robustness under stronger controlled corruption.
+    The four distributional soft kernels remain numerically similar on WOS because
+the released taxonomy contains only one meaningful parent-to-leaf transition; after
+tuning, tree, Poincaré, fixed-ultrametric, and tuned prefix-ultrametric compatibilities
+are largely alternative parameterizations of within-parent versus cross-parent prefer-
+ence. WOS therefore cannot independently test multi-depth longest-common-prefix
+geometry. The depth-four synthetic assay identifies that geometry; WOS tests finite-
+bias hierarchical routing under uncertain provenance on real text and a pretrained
+representation model. Additional paired risk-difference statistics are moved to the
+Supplementary Material.
+
+7.3. Controlled corruption stress test
+    We perturb each predicted parent posterior as
+
+                                     𝑞 ( 𝜀) = (1 − 𝜀)𝑞 + 𝜀𝑟,                                      (17)
+
+where 𝑟 is a one-hot distribution on one randomly selected non-gold parent held fixed
+for that document and seed, and 𝜀 ∈ {0, 0.1, 0.2, 0.3, 0.4}. This is a mechanistic
+stress test, not a model of real-world corruption prevalence.
+
+
+                                                 16
+     At 𝜀 = 0.3, posterior finite-bias ultrametric routing reaches 0.5783 ± 0.0021
+accuracy, matched MAP finite bias 0.5767 ± 0.0013, and exact-support hard MAP
+0.4951±0.0026. At 𝜀 = 0.4, hard MAP falls to 0.4022±0.0031, while matched MAP
+finite bias remains at 0.5758 ± 0.0017 and posterior finite bias at 0.5777 ± 0.0019.
+Relative to the matched MAP control at this strongest perturbation, preserving the
+posterior improves accuracy by +0.00189 (95% CI [0.00116, 0.00262]), lowers the
+outside-gold-parent > 0.5 rate by −0.00613 (95% CI [−0.00710, −0.00516]), and
+lowers NLL by -0.00893 (95% CI [-0.00920, -0.00865]). Thus finite-bias routing
+accounts for the dominant robustness gain in this external assay, while posterior
+preservation can provide a smaller additional benefit under stronger corruption.
+
+
+
+
+              (a) Leaf accuracy                          (b) Outside-gold-parent > 0.5 rate
+Figure 4: Controlled sensitivity analysis on the WOS predicted parent posterior. Error bars are 95% 𝑡
+intervals across ten paired head seeds.
+
+
+8. Discussion
+
+8.1. Robustness versus commitment
+     Across controlled and external experiments, the stable result is a boundary
+condition on structural commitment rather than a universal ranking of mechanisms.
+When provenance is exact, hard gating is competitive in the synthetic assay and
+substantially better in WOS. Under predicted parents, finite-bias routing is markedly
+more robust than exact-support hard MAP. The matched WOS ablation sharpens
+the attribution: most of the gap survives after collapsing the parent posterior to
+MAP, so avoiding zero-support commitment is the dominant factor in this external
+assay. Document bootstrap intervals support the same interpretation: the MAP-
+finite-bias versus hard-MAP accuracy interval is well separated from zero, whereas
+the posterior-versus-MAP-finite-bias accuracy interval crosses zero.
+     Posterior preservation remains a distinct modeling choice. Under the matched
+finite-bias operator it lowers NLL, but in the unperturbed predicted condition it leaves
+
+
+                                                 17
+more probability on alternative branches and increases several branch-concentration
+metrics. Under stronger corruption it becomes protective on accuracy, likelihood, and
+the outside-gold-parent threshold. This distinction is operationally relevant because
+knowledge-based systems may value calibrated uncertainty, branch concentration, or
+thresholded branch safety differently. Curated ontology membership or authoritative
+metadata can justify hard admissibility constraints; predicted taxonomy labels,
+entity-linking hypotheses, retrieval-source assignments, or learned branch projectors
+are qualitatively different.
+
+8.2. What ultrametric geometry contributes
+    The strongest evidence for nested-shell geometry comes from the depth-four
+controlled assay: fixed ultrametric routing substantially exceeds ordinary tree distance
+and the fitted Poincaré baseline, while shuffled taxonomy collapses performance.
+The tuned prefix-ultrametric control slightly exceeds the fixed 𝜌 = 0.2 schedule,
+showing that this particular 𝑝-adic-compatible decay is not privileged within the
+same family. The WOS hierarchy is too shallow to discriminate among soft structural
+kernels after tuning and therefore neither confirms nor contradicts a multi-depth
+geometric advantage. A real deep hierarchy is required to test whether the synthetic
+longest-common-prefix advantage transfers externally.
+    The method should likewise not be advertised as a generic accuracy-improving
+hierarchical classifier. Under predicted WOS parents, no leaf-accuracy difference
+is detected between posterior ultrametric routing and vanilla classification. Its
+external value lies in avoiding brittle exact-support failures and in controlling how
+structural uncertainty is represented. In genuinely multi-depth structures, ultrametric
+shells provide an explicit shared-prefix ordering and differentiable soft-address
+extensions with analyzable sensitivity; in shallow taxonomies, simpler finite-bias
+branch-compatibility kernels may be sufficient.
+
+8.3. Architectural and semantic boundaries
+    The synthetic validation and WOS transfer assay operate at different architectural
+locations by design. Only the synthetic experiment evaluates DSA inside attention;
+WOS applies compatibility after a frozen encoder. The matched MAP-plus-finite-
+bias control therefore decomposes posterior preservation from support hardness
+only at the post-encoder location. It does not establish that inserting DSA into
+ModernBERT’s internal attention would improve a downstream task or that the
+same decomposition would hold end to end.
+    The WOS experiment also contains two uncertainty sources: the unperturbed
+parent posterior is induced by a supervised branch head on real text, whereas the
+subsequent 𝜀-mixture is a controlled corruption intervention. The latter measures
+sensitivity rather than deployment prevalence. Finally, the synthetic wrong-vote
+
+                                          18
+intervention concerns provenance, not formal contradiction semantics: the model
+does not represent proposition-level 𝑃/¬𝑃 inconsistency. These boundaries define
+natural extensions rather than hidden claims.
+
+9. Limitations and Future Work
+
+    Four limitations are most consequential. First, WOS-46985 has only one
+meaningful parent-to-leaf transition, so the distinctive multi-depth longest-common-
+prefix geometry remains externally untested; deeper independently defined ontologies
+are needed. Second, ModernBERT is frozen and routing is post-encoder, so end-
+to-end DSA and learned contextual passports remain future work. Third, the
+matched support-versus-posterior decomposition exists only for WOS; the synthetic
+attention-level uncertainty assay still couples MAP collapse with exact-support
+gating, and a distributional exact-support counterpart is not uniquely defined when a
+posterior supports several branches. Fourth, the multi-depth passport uses level-wise
+categorical marginals and therefore cannot encode arbitrary dependencies among
+complete paths.
+    The external evaluation is also deliberately narrow. The 𝜀-mixture stress
+test is synthetic; confusion-derived perturbations, domain shift, retrieval-source
+uncertainty, and entity-linking errors would improve ecological validity. The WOS
+hierarchy requires a train-only modal repair of sparse label inconsistencies, all
+external results use one fixed split of one corpus, and the document bootstrap
+measures conditional test-document resampling rather than split-to-split or cross-
+dataset variability. Finally, the real-data assay shows no flat-accuracy advantage
+over a hierarchy-agnostic classifier. Applications concerned only with top-line
+classification accuracy may therefore receive little benefit from the present post-
+encoder operator.
+
+10. Conclusion
+
+    This work studies the boundary between exact and uncertain hierarchical branch
+information when combining semantic evidence with structural knowledge. Hard
+constraints are effective when the relevant branch is known by construction. Under
+model-predicted branches, finite-bias routing is substantially more robust than
+exact-support hard MAP, and a matched WOS ablation shows that most of this
+external robustness gap is attributable to avoiding exact zeroing outside the MAP
+branch rather than to posterior preservation alone.
+    Differentiable prefix-ultrametric shells provide one controlled realization of this
+principle. They admit a true finite-depth zero diagonal, two hard-equivalent continu-
+ous extensions with provably different cross-depth sensitivity, a context-dependent
+
+                                         19
+leakage bound, and a direct attention-level DSA implementation. Controlled depth-
+four experiments show that nested-shell structure can matter strongly, while also
+showing that normalized hard gating is sufficient under exact provenance and that
+a tuned member of the same prefix-ultrametric family can slightly outperform the
+fixed 𝜌 = 0.2 schedule.
+    The evidence therefore supports a regime distinction rather than a universal
+policy. The exact-provenance assays function as a safety and equivalence check, not
+as an accuracy argument for soft routing: use hard hierarchical constraints when
+branch assignment is exact; use finite bias to avoid brittle zero-support failures
+when branch assignment is predicted; and treat full posterior preservation as a
+separate decision governing how uncertainty is distributed under that finite-bias
+operator. Ultrametric nested shells are especially relevant when a genuinely
+multi-depth hierarchy makes shared-prefix structure operationally meaningful.
+
+CRediT authorship contribution statement
+    K. A. Ulizko: Conceptualization, Methodology, Formal analysis, Software,
+Investigation, Data curation, Visualization, Writing – original draft; A. S. Vatian:
+Conceptualization, Methodology, Supervision, Validation, Writing – review &
+editing, Project administration; M. V. Ulizko: Formal analysis, Validation, Writing
+– review & editing; I. V. Tomilov: Software, Validation, Data curation, Writing
+– review & editing; N. F. Gusarova: Conceptualization, Supervision, Validation,
+Writing – review & editing, Project administration.
+
+Data and code availability
+    Machine-readable controlled-experiment results and theorem-verification code
+and figure/table regeneration scripts are included with the reproducibility package
+supplied as supplementary material for peer review. The external experiment uses the
+public WOS-46985 corpus [40] and the open pretrained answerdotai/ModernBERT-
+base model [41]. The external pipeline records the exact model revision, embedding-extraction
+configuration, split definition, label-consistency audit, selected routing parameters,
+ten seed-level outputs, matched MAP-plus-finite-bias ablation, paired statistics, and
+document-bootstrap outputs required to reproduce the reported
+tables and corruption curves. No proprietary data are used. Upon acceptance, the
+authors will archive the complete reproducibility package in a persistent public
+repository and add its DOI or archival URL to the final manuscript.
+
+Funding
+    This work was supported by the Ministry of Science and Higher Education of
+the Russian Federation, Goszadanie (State Assignment) FSER-2025-0013.
+
+                                         20
+Declaration of competing interest
+
+    The authors declare that they have no known competing financial interests or
+personal relationships that could have appeared to influence the work reported in
+this paper.
+
+Declaration of generative AI and AI-assisted technologies in the manuscript
+preparation process
+
+    During the preparation of this work, the authors used ChatGPT (OpenAI) for
+manuscript organization, language revision, and consistency checks. After using this
+tool, the authors reviewed and edited the content as needed, independently verified
+the mathematical derivations, code, numerical outputs, and references, and take full
+responsibility for the content of the publication.
+
+References
+ [1] P. Lewis, E. Perez, A. Piktus, et al., Retrieval-augmented generation for knowledge-
+     intensive NLP tasks, in: Advances in Neural Information Processing Systems, 2020.
+ [2] S. Pan, L. Luo, Y. Wang, C. Chen, J. Wang, X. Wu, Unifying large language models
+     and knowledge graphs: A roadmap, IEEE Transactions on Knowledge and Data
+     Engineering 36 (7) (2024) 3580–3599.
+ [3] G. Agrawal, T. Kumarage, Z. Alghamdi, H. Liu, Can knowledge graphs reduce
+     hallucinations in LLMs? a survey, in: Proceedings of NAACL, 2024, pp. 3947–3960.
+ [4] S. Geng, M. Josifoski, M. Peyrard, R. West, Grammar-constrained decoding for
+     structured NLP tasks without finetuning, in: Proceedings of EMNLP, 2023.
+ [5] S. Ugare, R. Gumaste, T. Suresh, G. Singh, S. Misailovic, Flexible and efficient
+     grammar-constrained decoding, arXiv:2502.05111 (2025).
+ [6] P. Shaw, J. Uszkoreit, A. Vaswani, Self-attention with relative position representations,
+     NAACL-HLT, 2018, pp. 464–468. doi:10.18653/v1/N18-2074.
+ [7] C. Ying, T. Cai, S. Luo, S. Zheng, G. Ke, D. He, Y. Shen, T.-Y. Liu, Do transformers
+     really perform badly for graph representation?, NeurIPS, 2021.
+ [8] J. Zhu, J. Li, M. Zhu, L. Qian, M. Zhang, G. Zhou, Modeling graph structure in
+     transformer for better AMR-to-text generation, EMNLP-IJCNLP, 2019, pp. 5459–5468.
+     doi:10.18653/v1/D19-1548.
+ [9] R. Ji, J. Ji, Transferring knowledge from structure-aware self-attention language model
+     to sequence-to-sequence semantic parsing, COLING, 2022, pp. 3164–3174.
+[10] J. Qi, J. Tang, Z. He, X. Wan, Y. Cheng, C. Zhou, X. Wang, Q. Zhang, Z. Lin, RASAT:
+     Integrating relational structures into pretrained seq2seq model for text-to-SQL, EMNLP,
+     2022, pp. 3215–3229. doi:10.18653/v1/2022.emnlp-main.211.
+[11] I. Beltagy, M. E. Peters, A. Cohan, Longformer: The long-document transformer,
+     arXiv:2004.05150 (2020).
+
+
+                                             21
+[12] M. Zaheer, G. Guruganesh, A. Dubey, et al., Big Bird: Transformers for longer
+     sequences, NeurIPS, 2020.
+[13] J. Chen, C. Li, Y. Yuan, A. C. Yao, Hierarchical attention generates better proofs, ACL,
+     2025, pp. 17506–17520. doi:10.18653/v1/2025.acl-long.856.
+[14] X. L. Dong, E. Gabrilovich, G. Heitz, W. Horn, N. Lao, K. Murphy, T. Strohmann, S.
+     Sun, W. Zhang, Knowledge Vault: A web-scale approach to probabilistic knowledge
+     fusion, KDD, 2014, pp. 601–610. doi:10.1145/2623330.2623623.
+[15] X. Chen, M. Chen, W. Shi, Y. Sun, C. Zaniolo, Embedding uncertain knowledge
+     graphs, AAAI 33 (2019) 3363–3370. doi:10.1609/aaai.v33i01.33013363.
+[16] S. H. Bach, M. Broecheler, B. Huang, L. Getoor, Hinge-loss Markov random fields
+     and probabilistic soft logic, JMLR 18 (109) (2017) 1–67.
+[17] W. Shen, J. Wang, J. Han, Entity linking with a knowledge base: Issues, techniques,
+     and solutions, IEEE TKDE 27 (2) (2015) 443–460. doi:10.1109/TKDE.2014.2327028.
+[18] M. Nickel, D. Kiela, Poincaré embeddings for learning hierarchical representations,
+     NeurIPS, 2017.
+[19] M. Nickel, D. Kiela, Learning continuous hierarchies in the Lorentz model of hyperbolic
+     geometry, ICML, 2018, pp. 3779–3788.
+[20] O.-E. Ganea, G. Bécigneul, T. Hofmann, Hyperbolic neural networks, NeurIPS, 2018.
+[21] I. Chami, R. Ying, C. Ré, J. Leskovec, Hyperbolic graph convolutional neural networks,
+     NeurIPS, 2019.
+[22] C. Gulcehre, M. Denil, M. Malinowski, et al., Hyperbolic attention networks, ICLR,
+     2019.
+[23] Q. Liu, M. Nickel, D. Kiela, Graph transformer networks with hyperbolic geometry,
+     arXiv:2106.07350 (2021).
+[24] M. Yang, H. Verma, D. C. Zhang, J. Liu, I. King, R. Ying, Hypformer: Exploring
+     efficient hyperbolic transformer fully in hyperbolic space, arXiv:2407.01290 (2024).
+[25] F. Murtagh, G. Downs, P. Contreras, Hierarchical clustering of massive, high dimen-
+     sional data sets by exploiting ultrametric embedding, SIAM J. Sci. Comput. 30 (2008)
+     707–730. doi:10.1137/060676532.
+[26] E. W. Holman, The relation between hierarchical and euclidean models for psychologi-
+     cal distances, Psychometrika 37 (4) (1972) 417–423. doi:10.1007/BF02291218.
+[27] C.-M. Cuadras, F. Carmona, Dimensionalitat euclidiana de les distancies ultramètriques,
+     Qüestiió 7 (1) (1983) 353–358.
+[28] T. Faver, K. Kochalski, M. K. Murugan, H. Verheggen, E. Wesson, A. Weston,
+     Roundness properties of ultrametric spaces, Glasgow Mathematical Journal 56 (3)
+     (2014) 519–535. doi:10.1017/S0017089513000438.
+[29] A. F. T. Martins, Learning with the 𝑝-adics, arXiv:2512.22692 (2025).
+[30] G. L. R. N’guessan, v-PuNNs: van der Put neural networks for transparent ultrametric
+     representation learning, arXiv:2508.01010 (2025).
+[31] B. Toni, Beyond Archimedean intelligence: Toward an intrinsic 𝑝-adic theory of
+     learning, arXiv:2607.14562 (2026).
+[32] W. A. Zúñiga-Galindo, Deep neural networks: A formulation via non-
+     Archimedean analysis, Journal of Fourier Analysis and Applications 32 (2026) 77.
+
+
+                                            22
+     doi:10.1007/s00041-026-10290-y.
+[33] S. Bae, D. Lee, Numbers already carry their own embeddings, arXiv:2606.14108
+     (2026).
+[34] R. B. Quni-Gudzinas, A proof-of-concept for auditable attention using ultrametric tree
+     distances, Tech. rep., Zenodo (2026). doi:10.5281/zenodo.19648274.
+[35] E. Jang, S. Gu, B. Poole, Categorical reparameterization with Gumbel-softmax, ICLR,
+     2017.
+[36] C. J. Maddison, A. Mnih, Y. W. Teh, The Concrete distribution: A continuous
+     relaxation of discrete random variables, ICLR, 2017.
+[37] A. F. T. Martins, R. F. Astudillo, From softmax to sparsemax: A sparse model of
+     attention and multi-label classification, ICML, 2016, pp. 1614–1623.
+[38] B. Peters, V. Niculae, A. F. T. Martins, Sparse sequence-to-sequence models, ACL,
+     2019, pp. 1504–1519.
+[39] K. Kowsari, D. E. Brown, M. Heidarysafa, K. Jafari Meimandi, M. S. Gerber, L. E.
+     Barnes, HDLTex: Hierarchical deep learning for text classification, ICMLA, 2017, pp.
+     364–371. doi:10.1109/ICMLA.2017.0-134.
+[40] K. Kowsari, D. Brown, M. Heidarysafa, K. Jafari Meimandi, M. Gerber, L. Barnes,
+     Web of Science, Mendeley Data, Version 5 (2018). doi:10.17632/9rw3vkcfy4.5.
+[41] B. Warner, A. Chaffin, B. Clavié, O. Weller, O. Hallström, S. Taghadouini, A. Gallagher,
+     R. Biswas, F. Ladhak, T. Aarsen, N. Cooper, G. Adams, J. Howard, I. Poli, Smarter,
+     better, faster, longer: A modern bidirectional encoder for fast, memory efficient, and
+     long context finetuning and inference, arXiv:2412.13663 (2024).
+
+
+
+
+                                            23

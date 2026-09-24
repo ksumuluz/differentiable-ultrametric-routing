@@ -1,0 +1,222 @@
+{
+  "11": {
+    "parent_temperature": 1.024309802714861,
+    "leaf_temperature": 1.1000741951844353,
+    "routing": {
+      "vanilla": {},
+      "hard_map": {},
+      "tree": {
+        "tau": 4.0
+      },
+      "poincare": {
+        "tau": 0.67
+      },
+      "ultrametric": {
+        "rho": 0.5,
+        "tau": 1.2
+      },
+      "geometric_shell": {
+        "a": 0.6,
+        "tau": 1.0
+      }
+    }
+  },
+  "23": {
+    "parent_temperature": 1.008164787063857,
+    "leaf_temperature": 1.103224195437176,
+    "routing": {
+      "vanilla": {},
+      "hard_map": {},
+      "tree": {
+        "tau": 4.0
+      },
+      "poincare": {
+        "tau": 0.67
+      },
+      "ultrametric": {
+        "rho": 0.5,
+        "tau": 1.2
+      },
+      "geometric_shell": {
+        "a": 0.6,
+        "tau": 1.0
+      }
+    }
+  },
+  "37": {
+    "parent_temperature": 1.0202551314996522,
+    "leaf_temperature": 1.074485180151533,
+    "routing": {
+      "vanilla": {},
+      "hard_map": {},
+      "tree": {
+        "tau": 4.0
+      },
+      "poincare": {
+        "tau": 1.0
+      },
+      "ultrametric": {
+        "rho": 0.5,
+        "tau": 1.2
+      },
+      "geometric_shell": {
+        "a": 0.6,
+        "tau": 1.0
+      }
+    }
+  },
+  "41": {
+    "parent_temperature": 0.9972954077327747,
+    "leaf_temperature": 1.0861441907426455,
+    "routing": {
+      "vanilla": {},
+      "hard_map": {},
+      "tree": {
+        "tau": 4.0
+      },
+      "poincare": {
+        "tau": 0.67
+      },
+      "ultrametric": {
+        "rho": 0.5,
+        "tau": 1.2
+      },
+      "geometric_shell": {
+        "a": 0.6,
+        "tau": 1.0
+      }
+    }
+  },
+  "53": {
+    "parent_temperature": 1.0004639731162355,
+    "leaf_temperature": 1.0899978344350458,
+    "routing": {
+      "vanilla": {},
+      "hard_map": {},
+      "tree": {
+        "tau": 4.0
+      },
+      "poincare": {
+        "tau": 0.67
+      },
+      "ultrametric": {
+        "rho": 0.5,
+        "tau": 1.2
+      },
+      "geometric_shell": {
+        "a": 0.6,
+        "tau": 1.0
+      }
+    }
+  },
+  "67": {
+    "parent_temperature": 0.9925759969245114,
+    "leaf_temperature": 1.1068210607491995,
+    "routing": {
+      "vanilla": {},
+      "hard_map": {},
+      "tree": {
+        "tau": 4.0
+      },
+      "poincare": {
+        "tau": 0.67
+      },
+      "ultrametric": {
+        "rho": 0.5,
+        "tau": 1.2
+      },
+      "geometric_shell": {
+        "a": 0.6,
+        "tau": 1.0
+      }
+    }
+  },
+  "71": {
+    "parent_temperature": 1.0423017379596466,
+    "leaf_temperature": 1.0765623803582889,
+    "routing": {
+      "vanilla": {},
+      "hard_map": {},
+      "tree": {
+        "tau": 4.0
+      },
+      "poincare": {
+        "tau": 1.0
+      },
+      "ultrametric": {
+        "rho": 0.5,
+        "tau": 1.2
+      },
+      "geometric_shell": {
+        "a": 0.6,
+        "tau": 1.0
+      }
+    }
+  },
+  "83": {
+    "parent_temperature": 1.0057766350555881,
+    "leaf_temperature": 1.1066334726480165,
+    "routing": {
+      "vanilla": {},
+      "hard_map": {},
+      "tree": {
+        "tau": 4.0
+      },
+      "poincare": {
+        "tau": 0.67
+      },
+      "ultrametric": {
+        "rho": 0.5,
+        "tau": 1.2
+      },
+      "geometric_shell": {
+        "a": 0.6,
+        "tau": 1.0
+      }
+    }
+  },
+  "97": {
+    "parent_temperature": 1.0108043406075446,
+    "leaf_temperature": 1.1118480951156642,
+    "routing": {
+      "vanilla": {},
+      "hard_map": {},
+      "tree": {
+        "tau": 4.0
+      },
+      "poincare": {
+        "tau": 0.67
+      },
+      "ultrametric": {
+        "rho": 0.5,
+        "tau": 1.2
+      },
+      "geometric_shell": {
+        "a": 0.45,
+        "tau": 1.0
+      }
+    }
+  },
+  "109": {
+    "parent_temperature": 1.017407925085249,
+    "leaf_temperature": 1.0754380678106077,
+    "routing": {
+      "vanilla": {},
+      "hard_map": {},
+      "tree": {
+        "tau": 4.0
+      },
+      "poincare": {
+        "tau": 1.0
+      },
+      "ultrametric": {
+        "rho": 0.5,
+        "tau": 1.2
+      },
+      "geometric_shell": {
+        "a": 0.6,
+        "tau": 1.0
+      }
+    }
+  }
+}

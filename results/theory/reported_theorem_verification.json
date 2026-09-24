@@ -1,0 +1,11 @@
+[
+  {
+    "samples": 3888,
+    "worst": {
+      "mono_tel": 0,
+      "mono_exp": 0,
+      "ratio_rel": 1.0235374794524547e-14,
+      "bound_viol": 0
+    }
+  }
+]
